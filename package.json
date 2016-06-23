@@ -1,0 +1,31 @@
+{
+  "name": "yes-admin-server",
+  "version": "1.0.0",
+  "description": "YES Administration server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "serve": "node server.js",
+    "serve-watch": "nodemon server.js"
+  },
+  "author": "Nick Morton",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.1",
+    "gulp-tslint": "^5.0.0",
+    "tslint": "^3.10.2",
+    "typescript": "^1.8.10"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "cors": "^2.7.1",
+    "errorhandler": "^1.4.3",
+    "express": "^4.13.4",
+    "method-override": "^2.3.5",
+    "mongodb": "^2.1.18",
+    "morgan": "^1.7.0",
+    "rxjs": "^5.0.0-beta.8"
+  }
+}

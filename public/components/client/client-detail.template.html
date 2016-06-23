@@ -1,0 +1,13 @@
+<form (ngSubmit)="onSubmit()" #clientForm="ngForm">
+	<md-input [(ngModel)]="client.forename" #forename placeholder="Forename" required>
+		<div [hidden]="forename.valid || forename.pristine">
+			Required.
+		</div>
+	</md-input>
+	<md-input [(ngModel)]="client.surname" #surname placeholder="Surname" required>
+		<div [hidden]="surname.valid || surname.pristine">
+			Required.
+		</div>
+	</md-input>
+	<button md-button type="submit" [disabled]="!clientForm.form.valid">Save</button>
+</form>

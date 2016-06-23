@@ -1,0 +1,7 @@
+# Ignore npm packages, typings and vs settings.
+.vscode
+node_modules
+npm-debug.log
+public/node_modules
+public/typings
+typings

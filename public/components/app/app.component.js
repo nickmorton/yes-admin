@@ -15,9 +15,6 @@ var icon_1 = require('@angular2-material/icon');
 var list_1 = require('@angular2-material/list');
 var sidenav_1 = require('@angular2-material/sidenav');
 var toolbar_1 = require('@angular2-material/toolbar');
-var home_component_1 = require('../home/home.component');
-var client_component_1 = require('../client/client.component');
-var staff_component_1 = require('../staff/staff.component');
 var AppComponent = (function () {
     function AppComponent() {
         console.log('App component initialised');
@@ -26,8 +23,9 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'yes-admin-app',
-            styleUrls: ['components/app/app.style.css'],
-            templateUrl: 'components/app/app.template.html',
+            moduleId: module.id,
+            styleUrls: ['app.style.css'],
+            templateUrl: 'app.template.html',
             directives: [
                 router_1.ROUTER_DIRECTIVES,
                 button_1.MdButton,
@@ -37,12 +35,7 @@ var AppComponent = (function () {
                 toolbar_1.MdToolbar,
             ],
             viewProviders: [icon_1.MdIconRegistry],
-        }),
-        router_1.Routes([
-            new router_1.Route({ path: '/', component: home_component_1.HomeComponent }),
-            new router_1.Route({ path: '/clients', component: client_component_1.ClientComponent }),
-            new router_1.Route({ path: '/staff', component: staff_component_1.StaffComponent }),
-        ]), 
+        }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;

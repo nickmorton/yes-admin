@@ -11,8 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var card_1 = require('@angular2-material/card');
-var client_list_component_1 = require('./client-list.component');
-var client_detail_component_1 = require('./client-detail.component');
 var client_service_1 = require('./client.service');
 var ClientComponent = (function () {
     function ClientComponent() {
@@ -25,12 +23,7 @@ var ClientComponent = (function () {
                 router_1.ROUTER_DIRECTIVES,
                 card_1.MD_CARD_DIRECTIVES,
             ],
-        }),
-        router_1.Routes([
-            new router_1.Route({ path: '/', component: client_list_component_1.ClientListComponent }),
-            new router_1.Route({ path: '/add', component: client_detail_component_1.ClientDetailComponent }),
-            new router_1.Route({ path: '/:id', component: client_detail_component_1.ClientDetailComponent }),
-        ]), 
+        }), 
         __metadata('design:paramtypes', [])
     ], ClientComponent);
     return ClientComponent;

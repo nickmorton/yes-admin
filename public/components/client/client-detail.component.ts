@@ -1,13 +1,13 @@
 'use strict';
 
 import {Component} from '@angular/core';
-import {OnActivate, RouteSegment} from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {FORM_DIRECTIVES} from '@angular/common';
 import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
 import {ClientService} from './client.service';
 import {IClient, ClientValidator} from '../../shared/models/client';
 import {ValidatorFactory} from '../../lib/validator-factory';
-import {Observable} from 'rxjs/rx';
+import {Observable, Subject} from 'rxjs/rx';
 
 @Component({
 	templateUrl: 'components/client/client-detail.template.html',
@@ -16,7 +16,7 @@ import {Observable} from 'rxjs/rx';
 		MD_INPUT_DIRECTIVES,
 	],
 })
-export class ClientDetailComponent implements OnActivate {
+export class ClientDetailComponent implements CanActivate {
 	public client: IClient = <IClient>{};
 	public validator: ClientValidator;
 	public isAddMode: boolean = true;
@@ -25,13 +25,20 @@ export class ClientDetailComponent implements OnActivate {
 		this.validator = validatorFactory.getInstance(ClientValidator);
 	};
 
-	public routerOnActivate(curr: RouteSegment): void {
-		let id = curr.getParam('id');
+	public canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+		const subject: Subject<boolean> = new Subject<boolean>();
+		let id = route.params['id'];
 		if (id) {
 			this.isAddMode = false;
 			this.service.getById(id)
-				.subscribe((client: IClient) => this.client = client);
+				.subscribe((client: IClient) => {
+					this.client = client;
+					subject.next(true);
+					subject.complete();
+				});
 		}
+
+		return subject;
 	}
 
 	public onSubmit = (): void => {

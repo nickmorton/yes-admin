@@ -14,6 +14,7 @@ var input_1 = require('@angular2-material/input');
 var client_service_1 = require('./client.service');
 var client_1 = require('../../shared/models/client');
 var validator_factory_1 = require('../../lib/validator-factory');
+var rx_1 = require('rxjs/rx');
 var ClientDetailComponent = (function () {
     function ClientDetailComponent(service, validatorFactory) {
         var _this = this;
@@ -27,14 +28,20 @@ var ClientDetailComponent = (function () {
         this.validator = validatorFactory.getInstance(client_1.ClientValidator);
     }
     ;
-    ClientDetailComponent.prototype.routerOnActivate = function (curr) {
+    ClientDetailComponent.prototype.canActivate = function (route, state) {
         var _this = this;
-        var id = curr.getParam('id');
+        var subject = new rx_1.Subject();
+        var id = route.params['id'];
         if (id) {
             this.isAddMode = false;
             this.service.getById(id)
-                .subscribe(function (client) { return _this.client = client; });
+                .subscribe(function (client) {
+                _this.client = client;
+                subject.next(true);
+                subject.complete();
+            });
         }
+        return subject;
     };
     ClientDetailComponent = __decorate([
         core_1.Component({

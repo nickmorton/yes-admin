@@ -13,5 +13,6 @@
     "server.ts",
     "public/app.bootstrap.ts",
     "typings/index"
-  ]
+  ],
+  "compileOnSave": true
 }

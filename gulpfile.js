@@ -8,9 +8,6 @@ gulp.task('build-watch', ['sass', 'tsc', 'tslint'], function () {
 	gulp.watch(['./**/*.ts'], ['tsc', 'tslint']);
 })
 
-// gulp.task('tsc', ['tsc-server', 'tsc-client'], function () {
-// });
-
 gulp.task('tsc', function (cb) {
 	return exec('tsc', function (err, stdout, stderr) {
 		console.log(stdout);
@@ -18,14 +15,6 @@ gulp.task('tsc', function (cb) {
 		cb(err);
 	});
 })
-
-// gulp.task('tsc-client', function (cb) {
-// 	return exec('tsc -P public', function (err, stdout, stderr) {
-// 		console.log(stdout);
-// 		console.log(stderr);
-// 		cb(err);
-// 	});
-// })
 
 gulp.task('sass', function () {
 	return gulp.src(['public/**/*.scss', '!public/node_modules/**'])

@@ -1,4 +1,9 @@
 'use strict';
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,17 +14,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
+// // import {Router, CanActivate, ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+var forms_1 = require('@angular/forms');
+var router_1 = require('@angular/router');
 var input_1 = require('@angular2-material/input');
+var base_component_1 = require('../../lib/base.component');
 var client_service_1 = require('./client.service');
 var client_1 = require('../../shared/models/client');
 var validator_factory_1 = require('../../lib/validator-factory');
-var ClientDetailComponent = (function () {
-    function ClientDetailComponent(service, validatorFactory) {
+var ClientDetailComponent = (function (_super) {
+    __extends(ClientDetailComponent, _super);
+    function ClientDetailComponent(router, route, service, validatorFactory) {
         var _this = this;
+        _super.call(this);
+        this.router = router;
+        this.route = route;
         this.service = service;
         this.client = {};
         this.isAddMode = true;
+        // // public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+        // // 	const subject: Subject<boolean> = new Subject<boolean>();
+        // // 	let params: { [key: string]: string } = route.params;
+        // // 	let id: string = params['id'];
+        // // 	if (id) {
+        // // 		this.isAddMode = false;
+        // // 		this.service.getById(id)
+        // // 			.subscribe((client: IClient) => {
+        // // 				this.client = client;
+        // // 				subject.next(true);
+        // // 				subject.complete();
+        // // 			});
+        // // 	}
+        // // 	return subject;
+        // // }
         this.onSubmit = function () {
             var source = _this.isAddMode ? _this.service.insert(_this.client) : _this.service.update(_this.client);
             source.subscribe(function (client) { return _this.client = client; });
@@ -27,26 +54,30 @@ var ClientDetailComponent = (function () {
         this.validator = validatorFactory.getInstance(client_1.ClientValidator);
     }
     ;
-    ClientDetailComponent.prototype.routerOnActivate = function (curr) {
+    ClientDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var id = curr.getParam('id');
-        if (id) {
-            this.isAddMode = false;
-            this.service.getById(id)
-                .subscribe(function (client) { return _this.client = client; });
-        }
+        this.addForDisposal(this.route.params
+            .subscribe(function (params) {
+            var id = params['id'];
+            if (id) {
+                _this.isAddMode = false;
+                _this.service.getById(id)
+                    .subscribe(function (client) { return _this.client = client; });
+            }
+        }));
     };
+    ;
     ClientDetailComponent = __decorate([
         core_1.Component({
             templateUrl: 'components/client/client-detail.template.html',
             directives: [
-                common_1.FORM_DIRECTIVES,
+                forms_1.FORM_DIRECTIVES,
                 input_1.MD_INPUT_DIRECTIVES,
             ],
         }), 
-        __metadata('design:paramtypes', [client_service_1.ClientService, validator_factory_1.ValidatorFactory])
+        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, client_service_1.ClientService, validator_factory_1.ValidatorFactory])
     ], ClientDetailComponent);
     return ClientDetailComponent;
-}());
+}(base_component_1.BaseComponent));
 exports.ClientDetailComponent = ClientDetailComponent;
 //# sourceMappingURL=client-detail.component.js.map

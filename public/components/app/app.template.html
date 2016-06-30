@@ -1,11 +1,19 @@
-<md-sidenav-layout class="demo-root" fullscreen>
-	<md-sidenav #sideNav mode="side">
+<md-sidenav-layout fullscreen>
+	<md-sidenav #sideNav mode="over">
 		<md-nav-list>
-			<a md-list-item [routerLink]="['/']">Home</a>
-			<a md-list-item [routerLink]="['clients']">Clients</a>
-			<a md-list-item [routerLink]="['staff']">Staff</a>
+			<a md-list-item [routerLink]="['/']">
+				<md-icon md-list-icon>home</md-icon>
+				<span md-line>Home</span>
+			</a>
+			<a md-list-item [routerLink]="['clients']">
+				<md-icon md-list-icon>folder</md-icon>
+				<span md-line>Clients</span>
+			</a>
+			<a md-list-item [routerLink]="['staff']">
+				<md-icon md-list-icon>folder</md-icon>
+				<span md-line>Staff</span>
+			</a>
 		</md-nav-list>
-		<button md-button (click)="sideNav.close()">CLOSE</button>
 	</md-sidenav>
 	<div>
 		<md-toolbar color="primary">

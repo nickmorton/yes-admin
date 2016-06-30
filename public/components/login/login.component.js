@@ -14,27 +14,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var card_1 = require('@angular2-material/card');
 var base_component_1 = require('../../lib/base.component');
-var client_service_1 = require('./client.service');
-var ClientComponent = (function (_super) {
-    __extends(ClientComponent, _super);
-    function ClientComponent() {
+var LoginComponent = (function (_super) {
+    __extends(LoginComponent, _super);
+    function LoginComponent() {
         _super.apply(this, arguments);
     }
-    ClientComponent = __decorate([
+    LoginComponent = __decorate([
         core_1.Component({
-            templateUrl: 'components/client/client.template.html',
-            providers: [client_service_1.ClientService],
-            directives: [
-                router_1.ROUTER_DIRECTIVES,
-                card_1.MD_CARD_DIRECTIVES,
-            ],
+            moduleId: module.id,
+            templateUrl: 'login.template.html',
         }), 
         __metadata('design:paramtypes', [])
-    ], ClientComponent);
-    return ClientComponent;
+    ], LoginComponent);
+    return LoginComponent;
 }(base_component_1.BaseComponent));
-exports.ClientComponent = ClientComponent;
-//# sourceMappingURL=client.component.js.map
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=login.component.js.map

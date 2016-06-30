@@ -1,4 +1,9 @@
 'use strict';
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,21 +15,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var base_component_1 = require('../../lib/base.component');
 var client_service_1 = require('./client.service');
-var ClientListComponent = (function () {
+var ClientListComponent = (function (_super) {
+    __extends(ClientListComponent, _super);
     function ClientListComponent(router, clientService) {
         var _this = this;
+        _super.call(this);
         this.router = router;
         this.clientService = clientService;
         this.clients = [];
         this.view = function (client) {
-            console.log(client);
             _this.router.navigate(['/clients', client._id]);
             return false;
         };
     }
     ;
-    ClientListComponent.prototype.routerOnActivate = function () {
+    ClientListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.clientService.getAll()
             .subscribe(function (clients) { return _this.clients = clients; });
@@ -38,6 +45,6 @@ var ClientListComponent = (function () {
         __metadata('design:paramtypes', [router_1.Router, client_service_1.ClientService])
     ], ClientListComponent);
     return ClientListComponent;
-}());
+}(base_component_1.BaseComponent));
 exports.ClientListComponent = ClientListComponent;
 //# sourceMappingURL=client-list.component.js.map

@@ -1,9 +1,4 @@
 'use strict';
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -14,19 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var base_component_1 = require('../../lib/base.component');
-var StaffComponent = (function (_super) {
-    __extends(StaffComponent, _super);
-    function StaffComponent() {
-        _super.apply(this, arguments);
+var Observable_1 = require('rxjs/Observable');
+require('rxjs/add/observable/of');
+require('rxjs/add/operator/do');
+require('rxjs/add/operator/delay');
+var AuthenticationService = (function () {
+    function AuthenticationService() {
+        var _this = this;
+        this.isLoggedIn = false;
+        this.login = function () {
+            return Observable_1.Observable.of(true).delay(1000).do(function (val) { return _this.isLoggedIn = true; });
+        };
+        this.logout = function () {
+            _this.isLoggedIn = false;
+        };
     }
-    StaffComponent = __decorate([
-        core_1.Component({
-            template: "<h3>Not implemented</h3>",
-        }), 
+    AuthenticationService = __decorate([
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], StaffComponent);
-    return StaffComponent;
-}(base_component_1.BaseComponent));
-exports.StaffComponent = StaffComponent;
-//# sourceMappingURL=staff.component.js.map
+    ], AuthenticationService);
+    return AuthenticationService;
+}());
+exports.AuthenticationService = AuthenticationService;
+//# sourceMappingURL=authentication.service.js.map

@@ -4,7 +4,8 @@ import {Component} from '@angular/core';
 import {BaseComponent} from '../../lib/base.component';
 
 @Component({
-	template: `<h3>Not implemented</h3>`,
+	moduleId: module.id,
+	templateUrl: 'login.template.html',
 })
-export class StaffComponent extends BaseComponent {
+export class LoginComponent extends BaseComponent {
 }

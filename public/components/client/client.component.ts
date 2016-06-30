@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
 
+import {BaseComponent} from '../../lib/base.component';
 import {ClientService} from './client.service';
 
 @Component({
@@ -14,5 +15,5 @@ import {ClientService} from './client.service';
 		MD_CARD_DIRECTIVES,
 	],
 })
-export class ClientComponent {
+export class ClientComponent extends BaseComponent {
 }

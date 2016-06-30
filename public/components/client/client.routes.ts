@@ -8,6 +8,11 @@ import {ClientDetailComponent} from './client-detail.component';
 
 export const CLIENT_ROUTES: RouterConfig = [
 	{
+		path: '',
+		redirectTo: 'clients',
+		terminal: true,
+	},
+	{
 		path: 'clients', component: ClientComponent, children: [
 			{ path: '', component: ClientListComponent },
 			{ path: 'add', component: ClientDetailComponent },

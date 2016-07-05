@@ -3,7 +3,6 @@
 import 'rxjs/Rx';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {HTTP_PROVIDERS, RequestOptions} from '@angular/http';
-////import {Renderer, provide} from '@angular/core';
 import {provide} from '@angular/core';
 import {disableDeprecatedForms, provideForms} from '@angular/forms';
 import {MdIconRegistry} from '@angular2-material/icon';
@@ -19,7 +18,6 @@ bootstrap(
 		disableDeprecatedForms(),
 		provideForms(),
 		MdIconRegistry,
-		////Renderer,
 		ValidatorFactory,
 		provide(RequestOptions, { useClass: JsonRequestOptions }),
 		APP_ROUTES_PROVIDERS,

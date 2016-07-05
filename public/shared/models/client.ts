@@ -1,6 +1,8 @@
 'use strict';
 
-import {IModelBase, ValidatorBase, IValidationRules} from './model-base';
+import {IModelBase} from '../lib/model-base';
+import {ValidatorBase} from '../lib/validator-base';
+import {ValidationRuleFactory} from '../lib/validation-rule-factory';
 
 export interface IClient extends IModelBase {
 	forename: string;
@@ -9,7 +11,12 @@ export interface IClient extends IModelBase {
 };
 
 export class ClientValidator extends ValidatorBase<IClient> {
-	public rules: Array<IValidationRules> = [];
+	constructor() {
+		super([
+			{ propertyName: 'surname', rules: [ValidationRuleFactory.required()] },
+		]);
+	};
+
 	public validate(entity: IClient): boolean {
 		return super.validate(entity);
 	}

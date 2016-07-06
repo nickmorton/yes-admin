@@ -13,7 +13,12 @@ export interface IClient extends IModelBase {
 export class ClientValidator extends ValidatorBase<IClient> {
 	constructor() {
 		super([
-			{ propertyName: 'surname', rules: [ValidationRuleFactory.required()] },
+			{
+				propertyName: 'surname', rules: [
+					ValidationRuleFactory.required(),
+					ValidationRuleFactory.maxLength(32),
+				],
+			},
 		]);
 	};
 

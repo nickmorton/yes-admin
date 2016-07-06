@@ -11,7 +11,12 @@ var ClientValidator = (function (_super) {
     __extends(ClientValidator, _super);
     function ClientValidator() {
         _super.call(this, [
-            { propertyName: 'surname', rules: [validation_rule_factory_1.ValidationRuleFactory.required()] },
+            {
+                propertyName: 'surname', rules: [
+                    validation_rule_factory_1.ValidationRuleFactory.required(),
+                    validation_rule_factory_1.ValidationRuleFactory.maxLength(32),
+                ],
+            },
         ]);
     }
     ;

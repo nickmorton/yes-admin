@@ -1,24 +1,33 @@
 import {IClient} from '../../../public/shared/models/client';
 import {IClientRepository} from './client.repository';
+import {IRequest, IResponse, IPagedRequest, IPagedResponse} from '../../../public/shared/lib/request-response';
 import {Observable} from 'rxjs/observable';
 
 export class ClientService {
 	constructor(private repository: IClientRepository) {
 	};
 
-	public getById = (id: string): Observable<IClient> => {
-		return this.repository.getById(id);
+	public getById = (request: IRequest<string>): Observable<IResponse<IClient>> => {
+		return this.repository.getById(request.data)
+			.map((client: IClient): IResponse<IClient> => <IResponse<IClient>>{ entity: client });
 	};
 
-	public getAll = (): Observable<Array<IClient>> => {
-		return this.repository.getAll();
+	public get = (request: IPagedRequest<void>): Observable<IPagedResponse<IClient>> => {
+		return this.repository.get({ skip: request.skip, limit: request.limit })
+			.map((clients: Array<IClient>): IPagedResponse<IClient> => <IPagedResponse<IClient>>{
+				entities: clients,
+				skip: request.skip,
+				limit: request.limit,
+			});
 	};
 
-	public add = (client: IClient): Observable<IClient> => {
-		return this.repository.add(client);
+	public add = (request: IRequest<IClient>): Observable<IResponse<IClient>> => {
+		return this.repository.add(request.data)
+			.map((client: IClient): IResponse<IClient> => <IResponse<IClient>>{ entity: client });
 	};
 
-	public update = (client: IClient): Observable<IClient> => {
-		return this.repository.update(client);
+	public update = (request: IRequest<IClient>): Observable<IResponse<IClient>> => {
+		return this.repository.update(request.data)
+			.map((client: IClient): IResponse<IClient> => <IResponse<IClient>>{ entity: client });
 	};
 }

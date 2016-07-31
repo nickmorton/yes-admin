@@ -2,6 +2,7 @@
 var rx_1 = require('rxjs/rx');
 var mongodb_1 = require('mongodb');
 ;
+;
 var RepositoryBase = (function () {
     function RepositoryBase(config, collectionName, validator) {
         this.config = config;

@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {BaseComponent} from '../../lib/base.component';
 import {ClientService} from './client.service';
 import {IClient} from '../../shared/models/client';
+import {IPagedResponse} from '../../shared/lib/request-response';
 
 @Component({
 	selector: 'client-list',
@@ -19,8 +20,8 @@ export class ClientListComponent extends BaseComponent implements OnInit {
 	};
 
 	public ngOnInit() {
-		this.clientService.getAll()
-			.subscribe((clients: Array<IClient>) => this.clients = clients);
+		this.clientService.get({ skip: 0, limit: 10 })
+			.subscribe((response: IPagedResponse<IClient>) => this.clients = response.entities);
 	};
 
 	public view = (client: IClient): boolean => {

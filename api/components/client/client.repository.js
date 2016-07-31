@@ -28,9 +28,11 @@ var ClientRepository = (function (_super) {
         });
     };
     ;
-    ClientRepository.prototype.getAll = function () {
+    ClientRepository.prototype.get = function (criteria) {
         return this.dbExecute(function (collection, subject) {
-            collection.find().toArray(function (err, clients) {
+            collection
+                .find({}, null, criteria.skip, criteria.limit)
+                .toArray(function (err, clients) {
                 if (err) {
                     throw new Error(err.message);
                 }

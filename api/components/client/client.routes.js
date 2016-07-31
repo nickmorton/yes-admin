@@ -9,16 +9,16 @@ function register(app, config) {
     var service = new lazy_1.Lazy(function () { return new client_service_1.ClientService(new client_repository_1.ClientRepository(config, new client_1.ClientValidator())); });
     app
         .get(baseUrl + "/:id", function (req, res) {
-        service.instance.getById(req.params.id).subscribe(function (client) { return res.json(client); });
+        service.instance.getById({ data: req.params.id }).subscribe(function (response) { return res.json(response); });
     })
-        .get(baseUrl, function (req, res) {
-        service.instance.getAll().subscribe(function (clients) { return res.json(clients); });
+        .post(baseUrl, function (req, res) {
+        service.instance.get(req.body).subscribe(function (response) { return res.json(response); });
     })
         .post("" + baseUrl, function (req, res) {
-        service.instance.add(req.body).subscribe(function (client) { return res.json(client); });
+        service.instance.add(req.body).subscribe(function (response) { return res.json(response); });
     })
         .put("" + baseUrl, function (req, res) {
-        service.instance.update(req.body).subscribe(function (client) { return res.json(client); });
+        service.instance.update(req.body).subscribe(function (response) { return res.json(response); });
     });
 }
 exports.register = register;

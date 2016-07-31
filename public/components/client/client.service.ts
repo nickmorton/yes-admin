@@ -3,33 +3,34 @@ import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/rx';
 
 import {IClient} from '../../shared/models/client';
+import {IRequest, IResponse, IPagedRequest, IPagedResponse} from '../../shared/lib/request-response';
 
 @Injectable()
 export class ClientService {
 	constructor(private http: Http) {
 	};
 
-	public getAll = (): Observable<Array<IClient>> => {
-		return 	this.http.get('/api/clients')
-			.map((response: Response) => <Array<IClient>>response.json());
+	public get = (request: IPagedRequest<IClient>): Observable<IPagedResponse<IClient>> => {
+		return this.http.post('/api/clients', JSON.stringify(request))
+			.map((httpResponse: Response) => <IPagedResponse<IClient>>httpResponse.json());
 	};
 
-	public getById = (id: string): Observable<IClient> => {
-		return 	this.http.get(`/api/clients/${id}`)
-			.map((response: Response) => <IClient>response.json());
+	public getById = (id: string): Observable<IResponse<IClient>> => {
+		return this.http.get(`/api/clients/${id}`)
+			.map((res: Response) => <IResponse<IClient>>res.json());
 	};
 
-	public insert = (client: IClient): Observable<IClient> => {
-		return this.http.post('api/clients', JSON.stringify(client))
-			.map((response: Response) => <IClient>response.json());
+	public add = (request: IRequest<IClient>): Observable<IResponse<IClient>> => {
+		return this.http.post('api/clients', JSON.stringify(request))
+			.map((res: Response) => <IResponse<IClient>>res.json());
 	};
 
-	public update = (client: IClient): Observable<IClient> => {
-		return this.http.put('api/clients', JSON.stringify(client))
-			.map((response: Response) => <IClient>response.json());
+	public update = (request: IRequest<IClient>): Observable<IResponse<IClient>> => {
+		return this.http.put('api/clients', JSON.stringify(request))
+			.map((res: Response) => <IResponse<IClient>>res.json());
 	};
 
 	public create = (): IClient => {
-		return  <IClient>{};
+		return <IClient>{};
 	};
 }

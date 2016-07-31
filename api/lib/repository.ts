@@ -2,11 +2,25 @@ import {IApiConfig} from '../api.config';
 import {IModelBase} from '../../public/shared/lib/model-base';
 import {IValidator} from '../../public/shared/lib/validator-base';
 import {Observable, Subject} from 'rxjs/rx';
-import {MongoClient, ObjectID, MongoError, Db, Collection, InsertOneWriteOpResult, UpdateWriteOpResult, WriteError} from 'mongodb';
+import {
+	MongoClient,
+	ObjectID,
+	MongoError,
+	Db,
+	Collection,
+	InsertOneWriteOpResult,
+	UpdateWriteOpResult,
+	WriteError,
+} from 'mongodb';
+
+export interface IGetAllCriteria {
+	skip: number;
+	limit: number;
+};
 
 export interface IRepository<TEntity extends IModelBase> {
 	getById(id: string): Observable<TEntity>;
-	getAll(): Observable<Array<TEntity>>;
+	get(criteria?: IGetAllCriteria): Observable<Array<TEntity>>;
 	add(entity: TEntity): Observable<TEntity>;
 	update(entity: TEntity): Observable<TEntity>;
 };
@@ -19,7 +33,7 @@ export abstract class RepositoryBase<TEntity extends IModelBase> implements IRep
 	};
 
 	public abstract getById(id: string): Observable<TEntity>;
-	public abstract getAll(): Observable<Array<TEntity>>;
+	public abstract get(criteria?: IGetAllCriteria): Observable<Array<TEntity>>;
 
 	public add(entity: TEntity): Observable<TEntity> {
 		if (this.validator.validate(entity)) {

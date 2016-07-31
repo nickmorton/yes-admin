@@ -14,21 +14,21 @@ var ClientService = (function () {
     function ClientService(http) {
         var _this = this;
         this.http = http;
-        this.getAll = function () {
-            return _this.http.get('/api/clients')
-                .map(function (response) { return response.json(); });
+        this.get = function (request) {
+            return _this.http.post('/api/clients', JSON.stringify(request))
+                .map(function (httpResponse) { return httpResponse.json(); });
         };
         this.getById = function (id) {
             return _this.http.get("/api/clients/" + id)
-                .map(function (response) { return response.json(); });
+                .map(function (res) { return res.json(); });
         };
-        this.insert = function (client) {
-            return _this.http.post('api/clients', JSON.stringify(client))
-                .map(function (response) { return response.json(); });
+        this.add = function (request) {
+            return _this.http.post('api/clients', JSON.stringify(request))
+                .map(function (res) { return res.json(); });
         };
-        this.update = function (client) {
-            return _this.http.put('api/clients', JSON.stringify(client))
-                .map(function (response) { return response.json(); });
+        this.update = function (request) {
+            return _this.http.put('api/clients', JSON.stringify(request))
+                .map(function (res) { return res.json(); });
         };
         this.create = function () {
             return {};

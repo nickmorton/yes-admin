@@ -14,7 +14,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-// // import {Router, CanActivate, ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
 var input_1 = require('@angular2-material/input');
@@ -48,8 +47,10 @@ var ClientDetailComponent = (function (_super) {
         // // 	return subject;
         // // }
         this.onSubmit = function () {
-            var source = _this.isAddMode ? _this.service.insert(_this.client) : _this.service.update(_this.client);
-            source.subscribe(function (client) { return _this.client = client; });
+            var source = _this.isAddMode
+                ? _this.service.add({ data: _this.client })
+                : _this.service.update({ data: _this.client });
+            source.subscribe(function (response) { return _this.client = response.entity; });
         };
         this.validator = validatorFactory.getInstance(client_1.ClientValidator);
     }
@@ -62,7 +63,7 @@ var ClientDetailComponent = (function (_super) {
             if (id) {
                 _this.isAddMode = false;
                 _this.service.getById(id)
-                    .subscribe(function (client) { return _this.client = client; });
+                    .subscribe(function (response) { return _this.client = response.entity; });
             }
         }));
     };

@@ -3,17 +3,25 @@ var ClientService = (function () {
     function ClientService(repository) {
         var _this = this;
         this.repository = repository;
-        this.getById = function (id) {
-            return _this.repository.getById(id);
+        this.getById = function (request) {
+            return _this.repository.getById(request.data)
+                .map(function (client) { return { entity: client }; });
         };
-        this.getAll = function () {
-            return _this.repository.getAll();
+        this.get = function (request) {
+            return _this.repository.get({ skip: request.skip, limit: request.limit })
+                .map(function (clients) { return {
+                entities: clients,
+                skip: request.skip,
+                limit: request.limit,
+            }; });
         };
-        this.add = function (client) {
-            return _this.repository.add(client);
+        this.add = function (request) {
+            return _this.repository.add(request.data)
+                .map(function (client) { return { entity: client }; });
         };
-        this.update = function (client) {
-            return _this.repository.update(client);
+        this.update = function (request) {
+            return _this.repository.update(request.data)
+                .map(function (client) { return { entity: client }; });
         };
     }
     ;

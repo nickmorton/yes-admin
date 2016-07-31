@@ -1,11 +1,10 @@
 import {IApiConfig} from '../../api.config';
-import {RepositoryBase, IRepository} from '../../lib/repository';
+import {RepositoryBase, IRepository, IGetAllCriteria} from '../../lib/repository';
 import {IClient, ClientValidator} from '../../../public/shared/models/client';
 import {ObjectID, Collection, MongoError} from 'mongodb';
 import {Observable, Subject} from 'rxjs/rx';
 
 export interface IClientRepository extends IRepository<IClient> {
-
 };
 
 export class ClientRepository extends RepositoryBase<IClient> implements IClientRepository {
@@ -30,16 +29,18 @@ export class ClientRepository extends RepositoryBase<IClient> implements IClient
 		});
 	};
 
-	public getAll(): Observable<Array<IClient>> {
+	public get(criteria: IGetAllCriteria): Observable<Array<IClient>> {
 		return this.dbExecute<Array<IClient>>((collection: Collection, subject: Subject<Array<IClient>>) => {
-			collection.find().toArray((err: MongoError, clients: Array<IClient>): void => {
-				if (err) {
-					throw new Error(err.message);
-				}
+			collection
+				.find({}, null, criteria.skip, criteria.limit)
+				.toArray((err: MongoError, clients: Array<IClient>): void => {
+					if (err) {
+						throw new Error(err.message);
+					}
 
-				subject.next(clients);
-				subject.complete();
-			});
+					subject.next(clients);
+					subject.complete();
+				});
 		});
 	};
 }

@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "serve": "node server.js",
-    "serve-watch": "nodemon server.js"
+    "serve-watch": "nodemon server.js",
+    "postinstall": "typings && typings prune"
   },
   "author": "Nick Morton",
   "license": "ISC",

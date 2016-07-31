@@ -1,7 +1,6 @@
 'use strict';
 
 import {Component, OnInit} from '@angular/core';
-// // import {Router, CanActivate, ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {FORM_DIRECTIVES} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
@@ -9,7 +8,7 @@ import {BaseComponent} from '../../lib/base.component';
 import {ClientService} from './client.service';
 import {IClient, ClientValidator} from '../../shared/models/client';
 import {ValidatorFactory} from '../../lib/validator-factory';
-// // import {Observable, Subject} from 'rxjs/rx';
+import {IResponse} from '../../shared/lib/request-response';
 import {Observable} from 'rxjs/rx';
 
 @Component({
@@ -38,7 +37,7 @@ export class ClientDetailComponent extends BaseComponent implements OnInit {
 					if (id) {
 						this.isAddMode = false;
 						this.service.getById(id)
-							.subscribe((client: IClient) => this.client = client);
+							.subscribe((response: IResponse<IClient>) => this.client = response.entity);
 					}
 				})
 		);
@@ -62,7 +61,9 @@ export class ClientDetailComponent extends BaseComponent implements OnInit {
 	// // }
 
 	public onSubmit = (): void => {
-		const source: Observable<IClient> = this.isAddMode ? this.service.insert(this.client) : this.service.update(this.client);
-		source.subscribe((client: IClient) => this.client = client);
+		const source: Observable<IResponse<IClient>> = this.isAddMode
+			? this.service.add({ data: this.client })
+			: this.service.update({ data: this.client });
+		source.subscribe((response: IResponse<IClient>) => this.client = response.entity);
 	};
 }

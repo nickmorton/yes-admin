@@ -33,8 +33,8 @@ var ClientListComponent = (function (_super) {
     ;
     ClientListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.clientService.getAll()
-            .subscribe(function (clients) { return _this.clients = clients; });
+        this.clientService.get({ skip: 0, limit: 10 })
+            .subscribe(function (response) { return _this.clients = response.entities; });
     };
     ;
     ClientListComponent = __decorate([

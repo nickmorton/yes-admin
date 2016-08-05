@@ -2,6 +2,7 @@
 
 import { provideRouter, RouterConfig } from '@angular/router';
 
+import {PageNotFoundComponent} from './page-not-found.component';
 import {AuthenticationGuard} from '../login/authentication.guard';
 import {HomeComponent} from '../home/home.component';
 import {StaffComponent} from '../staff/staff.component';
@@ -13,6 +14,7 @@ export const APP_ROUTES: RouterConfig = [
   { path: 'staff', component: StaffComponent, canActivate: [AuthenticationGuard] },
   ...CLIENT_ROUTES,
   ...LOGIN_ROUTES,
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 export const APP_ROUTES_PROVIDERS = [

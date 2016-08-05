@@ -15,26 +15,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var card_1 = require('@angular2-material/card');
 var base_component_1 = require('../../lib/base.component');
-var client_service_1 = require('./client.service');
-var ClientComponent = (function (_super) {
-    __extends(ClientComponent, _super);
-    function ClientComponent() {
-        _super.apply(this, arguments);
+var user_service_1 = require('./user.service');
+var UserListComponent = (function (_super) {
+    __extends(UserListComponent, _super);
+    function UserListComponent(router, userService) {
+        var _this = this;
+        _super.call(this);
+        this.router = router;
+        this.userService = userService;
+        this.users = [];
+        this.view = function (user) {
+            _this.router.navigate(['/users', user._id]);
+            return false;
+        };
     }
-    ClientComponent = __decorate([
+    ;
+    UserListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.userService.get({ skip: 0, limit: 10 })
+            .subscribe(function (response) { return _this.users = response.entities; });
+    };
+    ;
+    UserListComponent = __decorate([
         core_1.Component({
-            templateUrl: 'components/client/client.template.html',
-            providers: [client_service_1.ClientService],
-            directives: [
-                router_1.ROUTER_DIRECTIVES,
-                card_1.MD_CARD_DIRECTIVES,
-            ],
+            selector: 'user-list',
+            templateUrl: 'components/user/user-list.template.html',
         }), 
-        __metadata('design:paramtypes', [])
-    ], ClientComponent);
-    return ClientComponent;
+        __metadata('design:paramtypes', [router_1.Router, user_service_1.UserService])
+    ], UserListComponent);
+    return UserListComponent;
 }(base_component_1.BaseComponent));
-exports.ClientComponent = ClientComponent;
-//# sourceMappingURL=client.component.js.map
+exports.UserListComponent = UserListComponent;
+//# sourceMappingURL=user-list.component.js.map

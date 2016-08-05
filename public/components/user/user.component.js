@@ -15,36 +15,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var card_1 = require('@angular2-material/card');
 var base_component_1 = require('../../lib/base.component');
-var client_service_1 = require('./client.service');
-var ClientListComponent = (function (_super) {
-    __extends(ClientListComponent, _super);
-    function ClientListComponent(router, clientService) {
-        var _this = this;
-        _super.call(this);
-        this.router = router;
-        this.clientService = clientService;
-        this.clients = [];
-        this.view = function (client) {
-            _this.router.navigate(['/clients', client._id]);
-            return false;
-        };
+var user_service_1 = require('./user.service');
+var UserComponent = (function (_super) {
+    __extends(UserComponent, _super);
+    function UserComponent() {
+        _super.apply(this, arguments);
     }
-    ;
-    ClientListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.clientService.get({ skip: 0, limit: 10 })
-            .subscribe(function (response) { return _this.clients = response.entities; });
-    };
-    ;
-    ClientListComponent = __decorate([
+    UserComponent = __decorate([
         core_1.Component({
-            selector: 'client-list',
-            templateUrl: 'components/client/client-list.template.html',
+            templateUrl: 'components/user/user.template.html',
+            providers: [user_service_1.UserService],
+            directives: [
+                router_1.ROUTER_DIRECTIVES,
+                card_1.MD_CARD_DIRECTIVES,
+            ],
         }), 
-        __metadata('design:paramtypes', [router_1.Router, client_service_1.ClientService])
-    ], ClientListComponent);
-    return ClientListComponent;
+        __metadata('design:paramtypes', [])
+    ], UserComponent);
+    return UserComponent;
 }(base_component_1.BaseComponent));
-exports.ClientListComponent = ClientListComponent;
-//# sourceMappingURL=client-list.component.js.map
+exports.UserComponent = UserComponent;
+//# sourceMappingURL=user.component.js.map

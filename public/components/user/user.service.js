@@ -10,24 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var ClientService = (function () {
-    function ClientService(http) {
+var UserService = (function () {
+    function UserService(http) {
         var _this = this;
         this.http = http;
         this.get = function (request) {
-            return _this.http.post('/api/clients', JSON.stringify(request))
+            return _this.http.post('/api/users', JSON.stringify(request))
                 .map(function (httpResponse) { return httpResponse.json(); });
         };
         this.getById = function (id) {
-            return _this.http.get("/api/clients/" + id)
+            return _this.http.get("/api/users/" + id)
                 .map(function (res) { return res.json(); });
         };
         this.add = function (request) {
-            return _this.http.post('api/clients', JSON.stringify(request))
+            return _this.http.post('api/users', JSON.stringify(request))
                 .map(function (res) { return res.json(); });
         };
         this.update = function (request) {
-            return _this.http.put('api/clients', JSON.stringify(request))
+            return _this.http.put('api/users', JSON.stringify(request))
                 .map(function (res) { return res.json(); });
         };
         this.create = function () {
@@ -35,11 +35,11 @@ var ClientService = (function () {
         };
     }
     ;
-    ClientService = __decorate([
+    UserService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], ClientService);
-    return ClientService;
+    ], UserService);
+    return UserService;
 }());
-exports.ClientService = ClientService;
-//# sourceMappingURL=client.service.js.map
+exports.UserService = UserService;
+//# sourceMappingURL=user.service.js.map

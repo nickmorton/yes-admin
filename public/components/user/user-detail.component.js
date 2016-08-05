@@ -18,18 +18,18 @@ var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
 var input_1 = require('@angular2-material/input');
 var base_component_1 = require('../../lib/base.component');
-var client_service_1 = require('./client.service');
-var client_1 = require('../../shared/models/client');
+var user_service_1 = require('./user.service');
+var user_1 = require('../../shared/models/user');
 var validator_factory_1 = require('../../lib/validator-factory');
-var ClientDetailComponent = (function (_super) {
-    __extends(ClientDetailComponent, _super);
-    function ClientDetailComponent(router, route, service, validatorFactory) {
+var UserDetailComponent = (function (_super) {
+    __extends(UserDetailComponent, _super);
+    function UserDetailComponent(router, route, service, validatorFactory) {
         var _this = this;
         _super.call(this);
         this.router = router;
         this.route = route;
         this.service = service;
-        this.client = {};
+        this.user = {};
         this.isAddMode = true;
         // // public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
         // // 	const subject: Subject<boolean> = new Subject<boolean>();
@@ -38,8 +38,8 @@ var ClientDetailComponent = (function (_super) {
         // // 	if (id) {
         // // 		this.isAddMode = false;
         // // 		this.service.getById(id)
-        // // 			.subscribe((client: IClient) => {
-        // // 				this.client = client;
+        // // 			.subscribe((user: IUser) => {
+        // // 				this.user = user;
         // // 				subject.next(true);
         // // 				subject.complete();
         // // 			});
@@ -48,14 +48,14 @@ var ClientDetailComponent = (function (_super) {
         // // }
         this.onSubmit = function () {
             var source = _this.isAddMode
-                ? _this.service.add({ data: _this.client })
-                : _this.service.update({ data: _this.client });
-            source.subscribe(function (response) { return _this.client = response.entity; });
+                ? _this.service.add({ data: _this.user })
+                : _this.service.update({ data: _this.user });
+            source.subscribe(function (response) { return _this.user = response.entity; });
         };
-        this.validator = validatorFactory.getInstance(client_1.ClientValidator);
+        this.validator = validatorFactory.getInstance(user_1.UserValidator);
     }
     ;
-    ClientDetailComponent.prototype.ngOnInit = function () {
+    UserDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.addForDisposal(this.route.params
             .subscribe(function (params) {
@@ -63,22 +63,22 @@ var ClientDetailComponent = (function (_super) {
             if (id) {
                 _this.isAddMode = false;
                 _this.service.getById(id)
-                    .subscribe(function (response) { return _this.client = response.entity; });
+                    .subscribe(function (response) { return _this.user = response.entity; });
             }
         }));
     };
     ;
-    ClientDetailComponent = __decorate([
+    UserDetailComponent = __decorate([
         core_1.Component({
-            templateUrl: 'components/client/client-detail.template.html',
+            templateUrl: 'components/user/user-detail.template.html',
             directives: [
                 forms_1.FORM_DIRECTIVES,
                 input_1.MD_INPUT_DIRECTIVES,
             ],
         }), 
-        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, client_service_1.ClientService, validator_factory_1.ValidatorFactory])
-    ], ClientDetailComponent);
-    return ClientDetailComponent;
+        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, user_service_1.UserService, validator_factory_1.ValidatorFactory])
+    ], UserDetailComponent);
+    return UserDetailComponent;
 }(base_component_1.BaseComponent));
-exports.ClientDetailComponent = ClientDetailComponent;
-//# sourceMappingURL=client-detail.component.js.map
+exports.UserDetailComponent = UserDetailComponent;
+//# sourceMappingURL=user-detail.component.js.map

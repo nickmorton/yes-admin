@@ -6,7 +6,7 @@ import {PageNotFoundComponent} from './page-not-found.component';
 import {AuthenticationGuard} from '../login/authentication.guard';
 import {HomeComponent} from '../home/home.component';
 import {StaffComponent} from '../staff/staff.component';
-import {CLIENT_ROUTES} from '../client/client.routes';
+import {CLIENT_ROUTES} from '../user/user.routes';
 import {LOGIN_ROUTES, AUTHENTICATION_PROVIDERS} from '../login/login.routes';
 
 export const APP_ROUTES: RouterConfig = [

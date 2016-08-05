@@ -7,9 +7,9 @@ var __extends = (this && this.__extends) || function (d, b) {
 var validator_base_1 = require('../lib/validator-base');
 var validation_rule_factory_1 = require('../lib/validation-rule-factory');
 ;
-var ClientValidator = (function (_super) {
-    __extends(ClientValidator, _super);
-    function ClientValidator() {
+var UserValidator = (function (_super) {
+    __extends(UserValidator, _super);
+    function UserValidator() {
         _super.call(this, [
             {
                 propertyName: 'surname', rules: [
@@ -20,11 +20,11 @@ var ClientValidator = (function (_super) {
         ]);
     }
     ;
-    ClientValidator.prototype.validate = function (entity) {
+    UserValidator.prototype.validate = function (entity) {
         return _super.prototype.validate.call(this, entity);
     };
-    return ClientValidator;
+    return UserValidator;
 }(validator_base_1.ValidatorBase));
-exports.ClientValidator = ClientValidator;
+exports.UserValidator = UserValidator;
 ;
-//# sourceMappingURL=client.js.map
+//# sourceMappingURL=user.js.map

@@ -1,12 +1,12 @@
 "use strict";
-var client_repository_1 = require('./client.repository');
-var client_service_1 = require('./client.service');
-var client_1 = require('../../../public/shared/models/client');
+var user_repository_1 = require('./user.repository');
+var user_service_1 = require('./user.service');
+var user_1 = require('../../../public/shared/models/user');
 var lazy_1 = require('../../lib/lazy');
 require('rxjs/rx');
 function register(app, config) {
-    var baseUrl = '/api/clients';
-    var service = new lazy_1.Lazy(function () { return new client_service_1.ClientService(new client_repository_1.ClientRepository(config, new client_1.ClientValidator())); });
+    var baseUrl = '/api/users';
+    var service = new lazy_1.Lazy(function () { return new user_service_1.UserService(new user_repository_1.UserRepository(config, new user_1.UserValidator())); });
     app
         .get(baseUrl + "/:id", function (req, res) {
         service.instance.getById({ data: req.params.id }).subscribe(function (response) { return res.json(response); });
@@ -23,4 +23,4 @@ function register(app, config) {
 }
 exports.register = register;
 ;
-//# sourceMappingURL=client.routes.js.map
+//# sourceMappingURL=user.routes.js.map

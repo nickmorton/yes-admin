@@ -5,28 +5,28 @@ import {FORM_DIRECTIVES} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
 import {BaseComponent} from '../../lib/base.component';
-import {ClientService} from './client.service';
-import {IClient, ClientValidator} from '../../shared/models/client';
+import {UserService} from './user.service';
+import {IUser, UserValidator} from '../../shared/models/user';
 import {ValidatorFactory} from '../../lib/validator-factory';
 import {IResponse} from '../../shared/lib/request-response';
 import {Observable} from 'rxjs/rx';
 
 @Component({
-	templateUrl: 'components/client/client-detail.template.html',
+	templateUrl: 'components/user/user-detail.template.html',
 	directives: [
 		FORM_DIRECTIVES,
 		MD_INPUT_DIRECTIVES,
 	],
 })
-// // export class ClientDetailComponent extends BaseComponent implements OnInit, CanActivate {
-export class ClientDetailComponent extends BaseComponent implements OnInit {
-	public client: IClient = <IClient>{};
-	public validator: ClientValidator;
+// // export class UserDetailComponent extends BaseComponent implements OnInit, CanActivate {
+export class UserDetailComponent extends BaseComponent implements OnInit {
+	public user: IUser = <IUser>{};
+	public validator: UserValidator;
 	public isAddMode: boolean = true;
 
-	constructor(private router: Router, private route: ActivatedRoute, private service: ClientService, validatorFactory: ValidatorFactory) {
+	constructor(private router: Router, private route: ActivatedRoute, private service: UserService, validatorFactory: ValidatorFactory) {
 		super();
-		this.validator = validatorFactory.getInstance(ClientValidator);
+		this.validator = validatorFactory.getInstance(UserValidator);
 	};
 
 	public ngOnInit() {
@@ -37,7 +37,7 @@ export class ClientDetailComponent extends BaseComponent implements OnInit {
 					if (id) {
 						this.isAddMode = false;
 						this.service.getById(id)
-							.subscribe((response: IResponse<IClient>) => this.client = response.entity);
+							.subscribe((response: IResponse<IUser>) => this.user = response.entity);
 					}
 				})
 		);
@@ -50,8 +50,8 @@ export class ClientDetailComponent extends BaseComponent implements OnInit {
 	// // 	if (id) {
 	// // 		this.isAddMode = false;
 	// // 		this.service.getById(id)
-	// // 			.subscribe((client: IClient) => {
-	// // 				this.client = client;
+	// // 			.subscribe((user: IUser) => {
+	// // 				this.user = user;
 	// // 				subject.next(true);
 	// // 				subject.complete();
 	// // 			});
@@ -61,9 +61,9 @@ export class ClientDetailComponent extends BaseComponent implements OnInit {
 	// // }
 
 	public onSubmit = (): void => {
-		const source: Observable<IResponse<IClient>> = this.isAddMode
-			? this.service.add({ data: this.client })
-			: this.service.update({ data: this.client });
-		source.subscribe((response: IResponse<IClient>) => this.client = response.entity);
+		const source: Observable<IResponse<IUser>> = this.isAddMode
+			? this.service.add({ data: this.user })
+			: this.service.update({ data: this.user });
+		source.subscribe((response: IResponse<IUser>) => this.user = response.entity);
 	};
 }

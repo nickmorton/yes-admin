@@ -7,42 +7,42 @@ var __extends = (this && this.__extends) || function (d, b) {
 var repository_1 = require('../../lib/repository');
 var mongodb_1 = require('mongodb');
 ;
-var ClientRepository = (function (_super) {
-    __extends(ClientRepository, _super);
-    function ClientRepository(config, validator) {
-        _super.call(this, config, 'clients', validator);
+var UserRepository = (function (_super) {
+    __extends(UserRepository, _super);
+    function UserRepository(config, validator) {
+        _super.call(this, config, 'users', validator);
     }
     ;
-    // // db.clients.insert({ forename: 'Nick', surname: 'Morton', dob: new Date(1959, 9, 20) })
-    // // db.clients.insert({ forename: 'Liz', surname: 'Morton', dob: new Date(1969, 5, 24) })
-    // // db.clients.insert({ forename: 'Nathan', surname: 'Morton', dob: new Date(2005, 6, 15) })
-    ClientRepository.prototype.getById = function (id) {
+    // // db.users.insert({ forename: 'Nick', surname: 'Morton', dob: new Date(1959, 9, 20) })
+    // // db.users.insert({ forename: 'Liz', surname: 'Morton', dob: new Date(1969, 5, 24) })
+    // // db.users.insert({ forename: 'Nathan', surname: 'Morton', dob: new Date(2005, 6, 15) })
+    UserRepository.prototype.getById = function (id) {
         return this.dbExecute(function (collection, subject) {
-            collection.find({ _id: new mongodb_1.ObjectID(id) }).limit(1).next(function (err, client) {
+            collection.find({ _id: new mongodb_1.ObjectID(id) }).limit(1).next(function (err, user) {
                 if (err) {
                     throw new Error(err.message);
                 }
-                subject.next(client);
+                subject.next(user);
                 subject.complete();
             });
         });
     };
     ;
-    ClientRepository.prototype.get = function (criteria) {
+    UserRepository.prototype.get = function (criteria) {
         return this.dbExecute(function (collection, subject) {
             collection
                 .find({}, null, criteria.skip, criteria.limit)
-                .toArray(function (err, clients) {
+                .toArray(function (err, users) {
                 if (err) {
                     throw new Error(err.message);
                 }
-                subject.next(clients);
+                subject.next(users);
                 subject.complete();
             });
         });
     };
     ;
-    return ClientRepository;
+    return UserRepository;
 }(repository_1.RepositoryBase));
-exports.ClientRepository = ClientRepository;
-//# sourceMappingURL=client.repository.js.map
+exports.UserRepository = UserRepository;
+//# sourceMappingURL=user.repository.js.map

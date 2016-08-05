@@ -4,13 +4,13 @@ import {IModelBase} from '../lib/model-base';
 import {ValidatorBase} from '../lib/validator-base';
 import {ValidationRuleFactory} from '../lib/validation-rule-factory';
 
-export interface IClient extends IModelBase {
+export interface IUser extends IModelBase {
 	forename: string;
 	surname: string;
 	dob: Date;
 };
 
-export class ClientValidator extends ValidatorBase<IClient> {
+export class UserValidator extends ValidatorBase<IUser> {
 	constructor() {
 		super([
 			{
@@ -22,7 +22,7 @@ export class ClientValidator extends ValidatorBase<IClient> {
 		]);
 	};
 
-	public validate(entity: IClient): boolean {
+	public validate(entity: IUser): boolean {
 		return super.validate(entity);
 	}
 };

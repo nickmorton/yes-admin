@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var router_1 = require('@angular/router');
 var page_not_found_component_1 = require('./page-not-found.component');
 var authentication_guard_1 = require('../login/authentication.guard');

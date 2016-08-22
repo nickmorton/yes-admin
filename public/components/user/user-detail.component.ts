@@ -1,5 +1,3 @@
-'use strict';
-
 import {Component, OnInit} from '@angular/core';
 import {FORM_DIRECTIVES} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';

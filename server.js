@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var e = require('express');
 ////import cors = require('cors');
 var apiRoutes = require('./api/api.routes');

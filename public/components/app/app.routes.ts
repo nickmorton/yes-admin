@@ -1,5 +1,3 @@
-'use strict';
-
 import { provideRouter, RouterConfig } from '@angular/router';
 
 import {PageNotFoundComponent} from './page-not-found.component';

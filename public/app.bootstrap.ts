@@ -1,5 +1,3 @@
-'use strict';
-
 import 'rxjs/Rx';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {HTTP_PROVIDERS, RequestOptions} from '@angular/http';

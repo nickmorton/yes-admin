@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 require('rxjs/Rx');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var http_1 = require('@angular/http');

@@ -1,5 +1,3 @@
-'use strict';
-
 import {RouterConfig} from '@angular/router';
 
 import {UserComponent} from '../user/user.component';

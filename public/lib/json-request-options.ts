@@ -1,5 +1,3 @@
-'use strict';
-
 import {BaseRequestOptions} from '@angular/http';
 
 export class JsonRequestOptions extends BaseRequestOptions {

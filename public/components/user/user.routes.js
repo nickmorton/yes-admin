@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var user_component_1 = require('../user/user.component');
 var user_list_component_1 = require('./user-list.component');
 var user_detail_component_1 = require('./user-detail.component');

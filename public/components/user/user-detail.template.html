@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+	<div class="grid grid--gutters">
+		<div class="grid-cell">
+			<md-input [(ngModel)]="user.forename" name="forename" #forename placeholder="Forename" required>
+				<div [hidden]="forename.valid || forename.pristine">
+					Required.
+				</div>
+			</md-input>
+		</div>
+		<div class="grid-cell">
+			<md-input [(ngModel)]="user.surname" name="surname" #surname placeholder="Surname" required>
+				<div [hidden]="surname.valid || surname.pristine">
+					Required.
+				</div>
+			</md-input>
+		</div>
+	</div>
+	<button md-button type="submit" [disabled]="!userForm.form.valid">Save</button>
+</form>

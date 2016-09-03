@@ -1,0 +1,18 @@
+<table>
+	<thead>
+		<tr>
+			<th>_id</th>
+			<th>surname</th>
+			<th>forename</th>
+			<th>dob</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let user of users">
+			<td>{{user._id}}</td>
+			<td><a href="#" (click)="view(user)">{{user.surname}}</a></td>
+			<td>{{user.forename}}</td>
+			<td>{{user.dob}}</td>
+		</tr>
+	</tbody>
+</table>

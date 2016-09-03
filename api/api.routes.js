@@ -1,5 +1,5 @@
 "use strict";
-var clients = require('./components/client/client.routes');
+var users = require('./components/user/user.routes');
 function register(app, config) {
     app
         .get('/*', function (req, res, next) {
@@ -18,7 +18,7 @@ function register(app, config) {
         res.contentType('application/json');
         next();
     });
-    clients.register(app, config);
+    users.register(app, config);
 }
 exports.register = register;
 ;

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,12 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var button_1 = require('@angular2-material/button');
-var icon_1 = require('@angular2-material/icon');
-var list_1 = require('@angular2-material/list');
-var sidenav_1 = require('@angular2-material/sidenav');
-var toolbar_1 = require('@angular2-material/toolbar');
 var AppComponent = (function () {
     function AppComponent() {
         console.log('App component initialised');
@@ -26,15 +20,6 @@ var AppComponent = (function () {
             moduleId: module.id,
             styleUrls: ['app.style.css'],
             templateUrl: 'app.template.html',
-            directives: [
-                router_1.ROUTER_DIRECTIVES,
-                button_1.MdButton,
-                icon_1.MdIcon,
-                sidenav_1.MD_SIDENAV_DIRECTIVES,
-                list_1.MD_LIST_DIRECTIVES,
-                toolbar_1.MdToolbar,
-            ],
-            viewProviders: [icon_1.MdIconRegistry],
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

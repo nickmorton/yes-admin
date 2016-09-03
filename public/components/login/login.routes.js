@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var login_component_1 = require('./login.component');
 var authentication_service_1 = require('./authentication.service');
 var authentication_guard_1 = require('./authentication.guard');

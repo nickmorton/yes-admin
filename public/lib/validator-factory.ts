@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {IValidator, IModelBase} from '../shared/models/model-base';
+import {IModelBase} from '../shared/lib/model-base';
+import {IValidator} from '../shared/lib/validator-base';
 
 @Injectable()
 export class ValidatorFactory {

@@ -1,5 +1,3 @@
-'use strict';
-
 import * as e from 'express';
 ////import cors = require('cors');
 import * as apiRoutes from './api/api.routes';

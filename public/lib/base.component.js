@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var BaseComponent = (function () {
     function BaseComponent() {
         var _this = this;

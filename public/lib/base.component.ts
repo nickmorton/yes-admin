@@ -1,5 +1,3 @@
-'use strict';
-
 import {OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs/subscription';
 

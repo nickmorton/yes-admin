@@ -1,10 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-
+import {Component, OnInit, Injectable} from '@angular/core';
+import {Router, Resolve, ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs/rx';
 import {BaseComponent} from '../../lib/base.component';
 import {UserService} from './user.service';
 import {IUser} from '../../shared/models/user';
 import {IPagedResponse} from '../../shared/lib/request-response';
+
+interface IUserListData {
+	users: Array<IUser>;
+};
 
 @Component({
 	selector: 'user-list',
@@ -13,17 +17,31 @@ import {IPagedResponse} from '../../shared/lib/request-response';
 export class UserListComponent extends BaseComponent implements OnInit {
 	public users: Array<IUser> = [];
 
-	constructor(private router: Router, private userService: UserService) {
+	constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) {
 		super();
 	};
 
 	public ngOnInit() {
-		this.userService.get({ skip: 0, limit: 10 })
-			.subscribe((response: IPagedResponse<IUser>) => this.users = response.entities);
+		this.route.data.subscribe(
+			(result: {data: IUserListData }) => {
+				this.users = result.data.users;
+			}
+		);
 	};
 
 	public view = (user: IUser): boolean => {
 		this.router.navigate(['/users', user._id]);
 		return false;
+	};
+}
+
+@Injectable()
+export class UserListResolve implements Resolve<IUserListData> {
+	constructor(private userService: UserService) {
+	};
+
+	public resolve(): Observable<IUserListData> {
+		return this.userService.get({ skip: 0, limit: 10 })
+			.map((response: IPagedResponse<IUser>) => <IUserListData>{ users: response.entities });
 	};
 }

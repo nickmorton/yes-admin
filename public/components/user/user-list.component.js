@@ -17,12 +17,14 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var base_component_1 = require('../../lib/base.component');
 var user_service_1 = require('./user.service');
+;
 var UserListComponent = (function (_super) {
     __extends(UserListComponent, _super);
-    function UserListComponent(router, userService) {
+    function UserListComponent(router, route, userService) {
         var _this = this;
         _super.call(this);
         this.router = router;
+        this.route = route;
         this.userService = userService;
         this.users = [];
         this.view = function (user) {
@@ -33,8 +35,9 @@ var UserListComponent = (function (_super) {
     ;
     UserListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.userService.get({ skip: 0, limit: 10 })
-            .subscribe(function (response) { return _this.users = response.entities; });
+        this.route.data.subscribe(function (result) {
+            _this.users = result.data.users;
+        });
     };
     ;
     UserListComponent = __decorate([
@@ -42,9 +45,26 @@ var UserListComponent = (function (_super) {
             selector: 'user-list',
             templateUrl: 'components/user/user-list.template.html',
         }), 
-        __metadata('design:paramtypes', [router_1.Router, user_service_1.UserService])
+        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, user_service_1.UserService])
     ], UserListComponent);
     return UserListComponent;
 }(base_component_1.BaseComponent));
 exports.UserListComponent = UserListComponent;
+var UserListResolve = (function () {
+    function UserListResolve(userService) {
+        this.userService = userService;
+    }
+    ;
+    UserListResolve.prototype.resolve = function () {
+        return this.userService.get({ skip: 0, limit: 10 })
+            .map(function (response) { return { users: response.entities }; });
+    };
+    ;
+    UserListResolve = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [user_service_1.UserService])
+    ], UserListResolve);
+    return UserListResolve;
+}());
+exports.UserListResolve = UserListResolve;
 //# sourceMappingURL=user-list.component.js.map

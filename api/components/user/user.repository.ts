@@ -2,7 +2,7 @@ import {IApiConfig} from '../../api.config';
 import {RepositoryBase, IRepository, IGetAllCriteria} from '../../lib/repository';
 import {IUser, UserValidator} from '../../../public/shared/models/user';
 import {ObjectID, Collection, MongoError} from 'mongodb';
-import {Observable, Subject} from 'rxjs/rx';
+import {Observable, Subject} from 'rxjs/Rx';
 
 export interface IUserRepository extends IRepository<IUser> {
 };

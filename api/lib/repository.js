@@ -1,5 +1,5 @@
 "use strict";
-var rx_1 = require('rxjs/rx');
+var Rx_1 = require('rxjs/Rx');
 var mongodb_1 = require('mongodb');
 ;
 ;
@@ -47,7 +47,7 @@ var RepositoryBase = (function () {
     ;
     RepositoryBase.prototype.dbExecute = function (callback) {
         var _this = this;
-        var subject = new rx_1.Subject();
+        var subject = new Rx_1.Subject();
         mongodb_1.MongoClient.connect(this.config.dbUrl, function (err, db) {
             callback(db.collection(_this.collectionName), subject);
         });

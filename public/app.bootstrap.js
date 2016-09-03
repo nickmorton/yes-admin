@@ -1,21 +1,28 @@
 "use strict";
-require('rxjs/Rx');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
-var http_1 = require('@angular/http');
-var core_1 = require('@angular/core');
-var forms_1 = require('@angular/forms');
-var icon_1 = require('@angular2-material/icon');
-var app_component_1 = require('./components/app/app.component');
-var validator_factory_1 = require('./lib/validator-factory');
-var json_request_options_1 = require('./lib/json-request-options');
-var app_routes_1 = require('./components/app/app.routes');
-platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
-    http_1.HTTP_PROVIDERS,
-    forms_1.disableDeprecatedForms(),
-    forms_1.provideForms(),
-    icon_1.MdIconRegistry,
-    validator_factory_1.ValidatorFactory,
-    core_1.provide(http_1.RequestOptions, { useClass: json_request_options_1.JsonRequestOptions }),
-    app_routes_1.APP_ROUTES_PROVIDERS,
-]).catch(function (err) { return console.error(err); });
+var app_module_1 = require('./components/app/app.module');
+require('rxjs/Rx');
+platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
+// // import 'rxjs/Rx';
+// // import {bootstrap} from '@angular/platform-browser-dynamic';
+// // import {HTTP_PROVIDERS, RequestOptions} from '@angular/http';
+// // import {provide} from '@angular/core';
+// // import {disableDeprecatedForms, provideForms} from '@angular/forms';
+// // import {MdIconRegistry} from '@angular2-material/icon';
+// // import {AppComponent} from './components/app/app.component';
+// // import {ValidatorFactory} from './lib/validator-factory';
+// // import {JsonRequestOptions} from './lib/json-request-options';
+// // import {APP_ROUTES_PROVIDERS} from  './components/app/app.routes';
+// // bootstrap(
+// // 	AppComponent,
+// // 	[
+// // 		HTTP_PROVIDERS,
+// // 		disableDeprecatedForms(),
+// // 		provideForms(),
+// // 		MdIconRegistry,
+// // 		ValidatorFactory,
+// // 		provide(RequestOptions, { useClass: JsonRequestOptions }),
+// // 		APP_ROUTES_PROVIDERS,
+// // 	]
+// // ).catch((err: any) => console.error(err));
 //# sourceMappingURL=app.bootstrap.js.map

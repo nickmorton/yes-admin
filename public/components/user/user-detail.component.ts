@@ -1,11 +1,11 @@
 import {Component, OnInit, Injectable} from '@angular/core';
 import {Router, ActivatedRoute, ActivatedRouteSnapshot, Resolve} from '@angular/router';
-import {BaseComponent} from '../../lib/base.component';
-import {UserService} from './user.service';
-import {IUser, UserValidator} from '../../shared/models/user';
-import {ValidatorFactory} from '../../lib/validator-factory';
-import {IResponse} from '../../shared/lib/request-response';
 import {Observable} from 'rxjs/rx';
+
+import {BaseComponent, ValidatorFactory} from '../../lib/index';
+import {UserService} from './user.service';
+import {IUser, UserValidator, EthnicityCode} from '../../shared/models/index';
+import {IResponse} from '../../shared/lib/index';
 
 export interface IUserDetailData {
 	user: IUser;
@@ -18,6 +18,7 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
 	public user: IUser = <IUser>{};
 	public validator: UserValidator;
 	public isAddMode: boolean = true;
+	public ethnicityCode: typeof EthnicityCode = EthnicityCode;
 
 	constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, validatorFactory: ValidatorFactory) {
 		super();

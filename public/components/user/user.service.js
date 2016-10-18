@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var index_1 = require('../../shared/models/index');
 var UserService = (function () {
     function UserService(http) {
         var _this = this;
@@ -31,7 +32,24 @@ var UserService = (function () {
                 .map(function (res) { return res.json(); });
         };
         this.create = function () {
-            return {};
+            return {
+                _id: null,
+                crisisSupport: [],
+                dob: null,
+                employmentStatus: index_1.EmploymentStatusCode.unknown,
+                ethnicity: index_1.EthnicityCode.unknown,
+                familySupport: index_1.FamilySupportCode.unknown,
+                gender: 'F',
+                hasCurrentCV: false,
+                hasSkillsToFindJob: false,
+                housingStatus: index_1.HousingStatusCode.unknown,
+                isDobApproximate: true,
+                isSearchingForJob: false,
+                jobInterviewsInLastMonth: 0,
+                jobSearchFrequency: index_1.JobSearchFrequencyCode.unknown,
+                name: null,
+                visits: [],
+            };
         };
     }
     ;
@@ -42,4 +60,17 @@ var UserService = (function () {
     return UserService;
 }());
 exports.UserService = UserService;
+// // gender: 'M',
+// // ethnicity: 0,
+// // crisisSupport: [],
+// // familySupport: FamilySupportCode.unknown,
+// // hasCurrentCV: false,
+// // hasSkillsToFindJob: false,
+// // isSearchingForJob: false,
+// // jobInterviewsInLastMonth: 0,
+// // jobSearchFrequency: JobSearchFrequencyCode.unknown,
+// // name: '',
+// // dob: null,
+// // employmentStatus:
+// // visits: []
 //# sourceMappingURL=user.service.js.map

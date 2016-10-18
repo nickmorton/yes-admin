@@ -4,8 +4,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var validator_base_1 = require('../lib/validator-base');
-var validation_rule_factory_1 = require('../lib/validation-rule-factory');
+var index_1 = require('../lib/index');
 ;
 ;
 var UserValidator = (function (_super) {
@@ -14,8 +13,8 @@ var UserValidator = (function (_super) {
         _super.call(this, [
             {
                 propertyName: 'name', rules: [
-                    validation_rule_factory_1.ValidationRuleFactory.required(),
-                    validation_rule_factory_1.ValidationRuleFactory.maxLength(64),
+                    index_1.ValidationRuleFactory.required(),
+                    index_1.ValidationRuleFactory.maxLength(64),
                 ],
             },
         ]);
@@ -25,7 +24,7 @@ var UserValidator = (function (_super) {
         return _super.prototype.validate.call(this, entity);
     };
     return UserValidator;
-}(validator_base_1.ValidatorBase));
+}(index_1.ValidatorBase));
 exports.UserValidator = UserValidator;
 ;
 //# sourceMappingURL=user.js.map

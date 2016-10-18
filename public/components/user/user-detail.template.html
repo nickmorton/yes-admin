@@ -1,18 +1,39 @@
 <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+	<!--name: string;
+	dob: Date;
+	isDobApproximate?: boolean;
+	gender: 'M' | 'F';
+	ethnicity: EthnicityCode;
+	housingStatus: HousingStatusCode;
+	employmentStatus: EmploymentStatusCode;-->
+
+
 	<div class="grid grid--gutters">
 		<div class="grid-cell">
-			<md-input [(ngModel)]="user.forename" name="forename" #forename placeholder="Forename" required>
-				<div [hidden]="forename.valid || forename.pristine">
+			<md-input [(ngModel)]="user.name" name="name" #name placeholder="Name" required>
+				<div [hidden]="name.valid || name.pristine">
 					Required.
 				</div>
 			</md-input>
 		</div>
+
 		<div class="grid-cell">
-			<md-input [(ngModel)]="user.surname" name="surname" #surname placeholder="Surname" required>
-				<div [hidden]="surname.valid || surname.pristine">
-					Required.
-				</div>
-			</md-input>
+			<md-input [(ngModel)]="user.dob" type="date" name="dob" #dob placeholder="DoB"></md-input>
+			<md-checkbox [(ngModel)]="user.isDobApproximate" name="isDobApproximate" #isDobApproximate>Approximate?</md-checkbox>
+		</div>
+
+		<div class="grid-cell">
+			<md-radio-group [(ngModel)]="user.gender" name="gender" #gender placeholder="Gender">
+				<md-radio-button value="F">Female</md-radio-button>
+				<md-radio-button value="M">Male</md-radio-button>
+			</md-radio-group>
+		</div>
+
+		<div class="grid-cell">
+			<select [(ngModel)]="user.ethnicity" name="ethnicity" #ethnicity placeholder="Ethnicity">
+				<option *ngFor="let code of ethnicityCode | keys" [value]="code.value">{{code.key}}</option>
+ 			</select>
 		</div>
 	</div>
 	<button md-button type="submit" [disabled]="!userForm.form.valid">Save</button>

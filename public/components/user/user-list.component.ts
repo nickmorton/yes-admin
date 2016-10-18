@@ -1,10 +1,10 @@
 import {Component, OnInit, Injectable} from '@angular/core';
 import {Router, Resolve, ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs/rx';
-import {BaseComponent} from '../../lib/base.component';
+import {BaseComponent} from '../../lib/index';
 import {UserService} from './user.service';
-import {IUser} from '../../shared/models/user';
-import {IPagedResponse} from '../../shared/lib/request-response';
+import {IUser} from '../../shared/models/index';
+import {IPagedResponse} from '../../shared/lib/index';
 
 interface IUserListData {
 	users: Array<IUser>;

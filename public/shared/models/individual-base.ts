@@ -1,14 +1,12 @@
-import {IModelBase} from '../lib/model-base';
-import {EmploymentStatusCode} from './enums/employment-status-code';
-import {EthnicityCode} from './enums/ethnicity-code';
-import {HousingStatusCode} from './enums/housing-status-code';
+import {IModelBase} from '../lib/index';
+import {EmploymentStatusCode, EthnicityCode, HousingStatusCode} from './';
 
 export interface IIndividualBase extends IModelBase {
-	name: string;
 	dob: Date;
-	isDobApproximate?: boolean;
-	gender: 'M' | 'F';
-	ethnicity: EthnicityCode;
-	housingStatus: HousingStatusCode;
 	employmentStatus: EmploymentStatusCode;
+	ethnicity: EthnicityCode;
+	gender: 'M' | 'F';
+	housingStatus: HousingStatusCode;
+	isDobApproximate: boolean;
+	name: string;
 };

@@ -11,30 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var common_1 = require('@angular/common');
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
-var material_module_1 = require('../../lib/material.module');
+var material_1 = require('@angular/material');
 var user_component_1 = require('./user.component');
 var user_list_component_1 = require('./user-list.component');
 var user_detail_component_1 = require('./user-detail.component');
 var user_service_1 = require('./user.service');
 var user_routing_1 = require('./user.routing');
+var pipes_module_1 = require('../../pipes/pipes.module');
 var UserModule = (function () {
     function UserModule() {
     }
     UserModule = __decorate([
         core_1.NgModule({
             imports: [
-                material_module_1.MaterialModule,
+                user_routing_1.userRoutes,
+                material_1.MaterialModule,
                 common_1.CommonModule,
                 forms_1.FormsModule,
-                user_routing_1.userRoutes,
+                pipes_module_1.PipesModule,
             ],
             declarations: [
                 user_component_1.UserComponent,
                 user_list_component_1.UserListComponent,
                 user_detail_component_1.UserDetailComponent,
-            ],
-            exports: [
-                user_component_1.UserComponent,
             ],
             providers: [
                 user_service_1.UserService,

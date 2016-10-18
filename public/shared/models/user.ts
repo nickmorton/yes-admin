@@ -1,20 +1,15 @@
-import {IIndividualBase} from './individual-base';
-import {ValidatorBase} from '../lib/validator-base';
-import {ValidationRuleFactory} from '../lib/validation-rule-factory';
-import {IssueCode} from './enums/issue-code';
-import {JobSearchFrequencyCode} from './enums/job-search-frequency-code';
-import {CrisisSupportCode} from './enums/crisis-support-code';
-import {FamilySupportCode} from './enums/family-support-code';
+import { IIndividualBase, IssueCode, JobSearchFrequencyCode, CrisisSupportCode, FamilySupportCode } from './';
+import { ValidatorBase, ValidationRuleFactory } from '../lib/index';
 
 export interface IUser extends IIndividualBase {
-	visits: Array<IUserVisit>;
+	crisisSupport: Array<CrisisSupportCode>;
+	familySupport: FamilySupportCode;
 	hasCurrentCV: boolean;
 	hasSkillsToFindJob: boolean;
 	isSearchingForJob: boolean;
-	jobSearchFrequency: JobSearchFrequencyCode;
 	jobInterviewsInLastMonth: number;
-	familySupport: FamilySupportCode;
-	crisisSupport: Array<CrisisSupportCode>;
+	jobSearchFrequency: JobSearchFrequencyCode;
+	visits: Array<IUserVisit>;
 };
 
 export interface IUserVisit {

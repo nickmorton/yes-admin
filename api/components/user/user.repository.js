@@ -4,7 +4,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var repository_1 = require('../../lib/repository');
+var index_1 = require('../../lib/index');
 var mongodb_1 = require('mongodb');
 ;
 var UserRepository = (function (_super) {
@@ -43,6 +43,6 @@ var UserRepository = (function (_super) {
     };
     ;
     return UserRepository;
-}(repository_1.RepositoryBase));
+}(index_1.RepositoryBase));
 exports.UserRepository = UserRepository;
 //# sourceMappingURL=user.repository.js.map

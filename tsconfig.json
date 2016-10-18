@@ -11,8 +11,7 @@
   },
   "files": [
     "server.ts",
-    "public/app.bootstrap.ts",
-    "typings/index"
+    "public/app.bootstrap.ts"
   ],
   "compileOnSave": true
 }

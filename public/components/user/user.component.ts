@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {BaseComponent} from '../../lib/base.component';
+import {BaseComponent} from '../../lib/index';
 
 @Component({
 	templateUrl: 'components/user/user.template.html',

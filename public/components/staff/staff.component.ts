@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BaseComponent} from '../../lib/base.component';
+import {BaseComponent} from '../../lib/index';
 
 @Component({
 	template: `<h3>Not implemented</h3>`,

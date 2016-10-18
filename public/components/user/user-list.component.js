@@ -15,7 +15,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var base_component_1 = require('../../lib/base.component');
+var index_1 = require('../../lib/index');
 var user_service_1 = require('./user.service');
 ;
 var UserListComponent = (function (_super) {
@@ -48,7 +48,7 @@ var UserListComponent = (function (_super) {
         __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, user_service_1.UserService])
     ], UserListComponent);
     return UserListComponent;
-}(base_component_1.BaseComponent));
+}(index_1.BaseComponent));
 exports.UserListComponent = UserListComponent;
 var UserListResolve = (function () {
     function UserListResolve(userService) {

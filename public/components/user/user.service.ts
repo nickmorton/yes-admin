@@ -1,9 +1,16 @@
-import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {Observable} from 'rxjs/rx';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/rx';
 
-import {IUser} from '../../shared/models/user';
-import {IRequest, IResponse, IPagedRequest, IPagedResponse} from '../../shared/lib/request-response';
+import {
+	EmploymentStatusCode,
+	EthnicityCode,
+	FamilySupportCode,
+	HousingStatusCode,
+	IUser,
+	JobSearchFrequencyCode,
+} from '../../shared/models/index';
+import { IRequest, IResponse, IPagedRequest, IPagedResponse } from '../../shared/lib/index';
 
 @Injectable()
 export class UserService {
@@ -31,6 +38,37 @@ export class UserService {
 	};
 
 	public create = (): IUser => {
-		return <IUser>{};
+		return <IUser>{
+			_id: null,
+			crisisSupport: [],
+			dob: null,
+			employmentStatus: EmploymentStatusCode.unknown,
+			ethnicity: EthnicityCode.unknown,
+			familySupport: FamilySupportCode.unknown,
+			gender: 'F',
+			hasCurrentCV: false,
+			hasSkillsToFindJob: false,
+			housingStatus: HousingStatusCode.unknown,
+			isDobApproximate: true,
+			isSearchingForJob: false,
+			jobInterviewsInLastMonth: 0,
+			jobSearchFrequency: JobSearchFrequencyCode.unknown,
+			name: null,
+			visits: [],
+		};
 	};
 }
+
+			// // gender: 'M',
+			// // ethnicity: 0,
+			// // crisisSupport: [],
+			// // familySupport: FamilySupportCode.unknown,
+			// // hasCurrentCV: false,
+			// // hasSkillsToFindJob: false,
+			// // isSearchingForJob: false,
+			// // jobInterviewsInLastMonth: 0,
+			// // jobSearchFrequency: JobSearchFrequencyCode.unknown,
+			// // name: '',
+			// // dob: null,
+			// // employmentStatus:
+			// // visits: []

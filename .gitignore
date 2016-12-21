@@ -4,4 +4,4 @@ node_modules
 npm-debug.log
 public/node_modules
 **/*.js.map
-**/.js
+**/*.js

@@ -1,4 +1,4 @@
-import {IModelBase} from '../lib/index';
+import {IModelBase} from '../lib';
 import {EmploymentStatusCode, EthnicityCode, HousingStatusCode} from './';
 
 export interface IIndividualBase extends IModelBase {

@@ -1,6 +1,6 @@
 import {IApiConfig} from '../../api.config';
-import {RepositoryBase, IRepository, IGetAllCriteria} from '../../lib/index';
-import {IUser, UserValidator} from '../../../public/shared/models/index';
+import {RepositoryBase, IRepository, IGetAllCriteria} from '../../lib';
+import {IUser, UserValidator} from '../../../public/shared/models';
 import {ObjectID, Collection, MongoError} from 'mongodb';
 import {Observable, Subject} from 'rxjs/Rx';
 

@@ -1,9 +1,9 @@
-import {Routes, RouterModule} from '@angular/router';
-import {ModuleWithProviders}  from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
-import {UserComponent} from '../user/user.component';
-import {UserListComponent, UserListResolve} from './user-list.component';
-import {UserDetailComponent, UserDetailResolve} from './user-detail.component';
+import { UserComponent } from '../user/user.component';
+import { UserListComponent, UserListResolve } from './user-list.component';
+import { UserDetailComponent, UserDetailResolve } from './user-detail.component';
 
 const routes: Routes = [
 	{

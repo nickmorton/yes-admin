@@ -1,13 +1,13 @@
-import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {MaterialModule} from '@angular/material';
-import {UserComponent} from './user.component';
-import {UserListComponent, UserListResolve} from './user-list.component';
-import {UserDetailComponent, UserDetailResolve} from './user-detail.component';
-import {UserService} from './user.service';
-import {userRoutes} from './user.routing';
-import {PipesModule} from '../../pipes/pipes.module';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MaterialModule } from '@angular/material';
+import { UserComponent } from './user.component';
+import { UserListComponent, UserListResolve } from './user-list.component';
+import { UserDetailComponent, UserDetailResolve } from './user-detail.component';
+import { UserService } from './user.service';
+import { userRoutes } from './user.routing';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
 	imports: [

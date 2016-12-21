@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BaseComponent} from '../../lib/index';
+import {BaseComponent} from '../../lib';
 
 @Component({
 	moduleId: module.id,

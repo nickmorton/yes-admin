@@ -1,11 +1,12 @@
-import {Component, OnInit, Injectable} from '@angular/core';
-import {Router, ActivatedRoute, ActivatedRouteSnapshot, Resolve} from '@angular/router';
-import {Observable} from 'rxjs/rx';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { Router, ActivatedRoute, ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs/rx';
 
-import {BaseComponent, ValidatorFactory} from '../../lib/index';
-import {UserService} from './user.service';
-import {IUser, UserValidator, EthnicityCode} from '../../shared/models/index';
-import {IResponse} from '../../shared/lib/index';
+import { BaseComponent, ValidatorFactory } from '../../lib';
+import { UserService } from './user.service';
+import { IUser, UserValidator, EthnicityCode } from '../../shared/models';
+import { IResponse } from '../../shared/lib';
 
 export interface IUserDetailData {
 	user: IUser;
@@ -20,7 +21,13 @@ export class UserDetailComponent extends BaseComponent implements OnInit {
 	public isAddMode: boolean = true;
 	public ethnicityCode: typeof EthnicityCode = EthnicityCode;
 
-	constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, validatorFactory: ValidatorFactory) {
+	constructor(
+		private router: Router,
+		private route: ActivatedRoute,
+		form: FormGroup,
+		private userService: UserService,
+		validatorFactory: ValidatorFactory
+	) {
 		super();
 		this.validator = validatorFactory.getInstance(UserValidator);
 	};

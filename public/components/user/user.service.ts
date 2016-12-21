@@ -9,8 +9,8 @@ import {
 	HousingStatusCode,
 	IUser,
 	JobSearchFrequencyCode,
-} from '../../shared/models/index';
-import { IRequest, IResponse, IPagedRequest, IPagedResponse } from '../../shared/lib/index';
+} from '../../shared/models';
+import { IRequest, IResponse, IPagedRequest, IPagedResponse } from '../../shared/lib';
 
 @Injectable()
 export class UserService {

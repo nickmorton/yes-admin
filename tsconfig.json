@@ -9,9 +9,9 @@
     "removeComments": false,
     "noImplicitAny": true
   },
-  "files": [
-    "server.ts",
-    "public/app.bootstrap.ts"
+  "exclude": [
+    "node_modules",
+    "public/node_modules"
   ],
   "compileOnSave": true
 }

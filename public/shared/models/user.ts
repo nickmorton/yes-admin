@@ -1,5 +1,5 @@
 import { IIndividualBase, IssueCode, JobSearchFrequencyCode, CrisisSupportCode, FamilySupportCode } from './';
-import { ValidatorBase, ValidationRuleFactory } from '../lib/index';
+import { ValidatorBase, ValidationRuleFactory } from '../lib';
 
 export interface IUser extends IIndividualBase {
 	crisisSupport: Array<CrisisSupportCode>;

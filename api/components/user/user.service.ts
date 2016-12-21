@@ -1,6 +1,6 @@
-import {IUser} from '../../../public/shared/models/index';
+import {IUser} from '../../../public/shared/models';
 import {IUserRepository} from './user.repository';
-import {IRequest, IResponse, IPagedRequest, IPagedResponse} from '../../../public/shared/lib/index';
+import {IRequest, IResponse, IPagedRequest, IPagedResponse} from '../../../public/shared/lib';
 import {Observable} from 'rxjs/observable';
 
 export class UserService {

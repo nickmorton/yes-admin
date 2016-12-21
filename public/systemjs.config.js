@@ -21,7 +21,11 @@
 
     // Other libraries.
     'rxjs': 'npm:rxjs',
-    '@angular/material': 'npm:@angular/material'
+    '@angular/material': 'npm:@angular/material',
+
+    // Barrels.
+    'lib': 'app/lib',
+    'models': 'app/models'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension

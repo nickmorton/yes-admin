@@ -1,5 +1,5 @@
 import {IApiConfig} from '../api.config';
-import {IModelBase, IValidator} from '../../public/shared/lib/index';
+import {IModelBase, IValidator} from '../../public/shared/lib';
 import {Observable, Subject} from 'rxjs/Rx';
 import {
 	MongoClient,

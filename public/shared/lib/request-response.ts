@@ -1,4 +1,4 @@
-import {IModelBase} from './model-base';
+import { IModelBase } from './model-base';
 
 export interface IRequest<TData> {
 	data: TData;

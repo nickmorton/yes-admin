@@ -1,10 +1,10 @@
-import {Component, OnInit, Injectable} from '@angular/core';
-import {Router, Resolve, ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs/rx';
-import {BaseComponent} from '../../lib';
-import {UserService} from './user.service';
-import {IUser} from '../../shared/models';
-import {IPagedResponse} from '../../shared/lib';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { Router, Resolve, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/rx';
+import { BaseComponent } from '../../lib';
+import { UserService } from './user.service';
+import { IUser } from '../../shared/models';
+import { IPagedResponse } from '../../shared/lib';
 
 interface IUserListData {
 	users: Array<IUser>;

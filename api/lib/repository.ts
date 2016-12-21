@@ -1,7 +1,7 @@
-import {IApiConfig} from '../api.config';
-import {IModelBase, IValidator} from '../../public/shared/lib';
-import {Observable, Subject} from 'rxjs/Rx';
-import {
+import { IApiConfig } from '../api.config';
+import { IModelBase, IValidator } from '../../public/shared/lib';
+import { Observable, Subject } from 'rxjs/Rx';
+import { 
 	MongoClient,
 	ObjectID,
 	MongoError,
@@ -10,7 +10,7 @@ import {
 	InsertOneWriteOpResult,
 	UpdateWriteOpResult,
 	WriteError,
-} from 'mongodb';
+ } from 'mongodb';
 
 export interface IGetAllCriteria {
 	skip: number;

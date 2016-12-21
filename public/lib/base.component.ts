@@ -1,5 +1,5 @@
-import {OnDestroy} from '@angular/core';
-import {Subscription} from 'rxjs/subscription';
+import { OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/subscription';
 
 export class BaseComponent implements OnDestroy {
 	private disposables: Array<Subscription> = [];

@@ -1,7 +1,7 @@
 import * as e from 'express';
 ////import cors = require('cors');
 import * as apiRoutes from './api/api.routes';
-import {apiConfig} from './api/api.config';
+import { apiConfig } from './api/api.config';
 import * as bodyParser from 'body-parser';
 
 const port: number = process.env.PORT || 3000;

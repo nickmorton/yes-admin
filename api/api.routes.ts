@@ -1,5 +1,5 @@
-import {Application} from 'express';
-import {IApiConfig} from './api.config';
+import { Application } from 'express';
+import { IApiConfig } from './api.config';
 import * as users from './components/user/user.routes';
 
 export function register(app: Application, config: IApiConfig) {

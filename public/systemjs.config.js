@@ -23,7 +23,7 @@
     'rxjs': 'npm:rxjs',
     '@angular/material': 'npm:@angular/material',
 
-    // Barrels.
+    // App barrels.
     'lib': 'app/lib',
     'models': 'app/models'
   };
@@ -33,6 +33,7 @@
     'app': { defaultExtension: 'js' },
     'rxjs': { defaultExtension: 'js' },
     '@angular/material': { defaultExtension: 'js', main: 'material.umd.js' },
+    'lib': { defaultExtension: 'js', main: 'index.js'}
   };
 
   const config = {

@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 
 // Members.
-import {KeysPipe} from './keys.pipe';
+import { KeysPipe } from './keys.pipe';
 
 @NgModule({
 	declarations: [

@@ -1,11 +1,10 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 import { LoginComponent } from './login.component';
-import { AuthenticationService } from './authentication.service';
-import { AuthenticationGuard } from './authentication.guard';
 
-export const LOGIN_ROUTES: Routes = [
+const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 ];
 
-export const AUTHENTICATION_PROVIDERS: Array<Object> = [AuthenticationGuard, AuthenticationService];
+export const loginRouting: ModuleWithProviders = RouterModule.forRoot(routes);

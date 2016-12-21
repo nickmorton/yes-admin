@@ -1,5 +1,5 @@
-// // import {CanActivate} from '@angular/router';
-// // import {Observable}    from 'rxjs/Observable';
+// // import { CanActivate } from '@angular/router';
+// // import { Observable}    from 'rxjs/Observable';
 
 // // export class CanActivateGuard implements CanActivate {
 // // 	public canActivate(component: CanActivate): Observable<boolean> | boolean {

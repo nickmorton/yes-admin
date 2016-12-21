@@ -1,6 +1,6 @@
-import {NgModule, ModuleWithProviders} from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import {ValidatorFactory} from './validator-factory';
+import { ValidatorFactory } from './validator-factory';
 
 @NgModule({
 })

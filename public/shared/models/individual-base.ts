@@ -1,5 +1,5 @@
-import {IModelBase} from '../lib';
-import {EmploymentStatusCode, EthnicityCode, HousingStatusCode} from './';
+import { IModelBase } from '../lib';
+import { EmploymentStatusCode, EthnicityCode, HousingStatusCode } from './';
 
 export interface IIndividualBase extends IModelBase {
 	dob: Date;

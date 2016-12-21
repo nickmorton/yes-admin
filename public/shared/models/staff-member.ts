@@ -1,4 +1,4 @@
-import {IIndividualBase} from './';
+import { IIndividualBase } from './';
 
 export interface IStaffMember extends IIndividualBase {
 }

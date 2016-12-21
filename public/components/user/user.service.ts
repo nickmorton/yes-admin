@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 
-import {
+import { 
 	EmploymentStatusCode,
 	EthnicityCode,
 	FamilySupportCode,
 	HousingStatusCode,
 	IUser,
 	JobSearchFrequencyCode,
-} from '../../shared/models';
+ } from '../../shared/models';
 import { IRequest, IResponse, IPagedRequest, IPagedResponse } from '../../shared/lib';
 
 @Injectable()

@@ -1,7 +1,7 @@
-import {RouterModule, Routes} from '@angular/router';
-import {ModuleWithProviders} from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
-import {PageNotFoundComponent} from './page-not-found.component';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

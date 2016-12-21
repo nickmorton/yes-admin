@@ -1,4 +1,4 @@
-import {BaseRequestOptions} from '@angular/http';
+import { BaseRequestOptions } from '@angular/http';
 
 export class JsonRequestOptions extends BaseRequestOptions {
 	constructor() {

@@ -1,4 +1,4 @@
-import {IValidationRule, IModelBase} from './';
+import { IValidationRule, IModelBase } from './';
 
 export class ValidationRuleFactory {
 	public static required<TEntity extends IModelBase>(): IValidationRule<TEntity> {

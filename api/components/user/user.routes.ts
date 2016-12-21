@@ -1,10 +1,10 @@
 import * as e from 'express';
-import {IApiConfig} from '../../api.config';
-import {UserRepository} from './user.repository';
-import {UserService} from './user.service';
-import {IUser, UserValidator} from '../../../public/shared/models';
-import {IResponse, IPagedResponse} from '../../../public/shared/lib';
-import {Lazy} from '../../lib';
+import { IApiConfig } from '../../api.config';
+import { UserRepository } from './user.repository';
+import { UserService } from './user.service';
+import { IUser, UserValidator } from '../../../public/shared/models';
+import { IResponse, IPagedResponse } from '../../../public/shared/lib';
+import { Lazy } from '../../lib';
 import 'rxjs/rx';
 
 export function register(app: e.Application, config: IApiConfig) {

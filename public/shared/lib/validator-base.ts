@@ -1,4 +1,4 @@
-import { IModelBase } from './';
+import { IModelBase } from './model-base';
 
 export interface IValidationRule<TEntity extends IModelBase> {
 	validate: (entity: TEntity, propertyName: string) => boolean;

@@ -21,14 +21,13 @@
 
 		// Other libraries.
 		'rxjs': 'npm:rxjs',
-		'@angular/material': 'npm:@angular/material',
+		'@angular/material': 'npm:@angular/material/bundles/material.umd.js',
 	};
 
 	// packages tells the System loader how to load when no filename and/or no extension
 	const packages = {
 		'app': { defaultExtension: 'js' },
 		'rxjs': { defaultExtension: 'js' },
-		'@angular/material': { defaultExtension: 'js', main: 'material.umd.js' },
 
 		// App barrels.
 		'shared/lib': { main: 'index.js', defaultExtension: 'js' },

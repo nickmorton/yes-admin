@@ -22,7 +22,8 @@ export class UserValidator extends ValidatorBase<IUser> {
 	constructor() {
 		super([
 			{
-				propertyName: 'name', rules: [
+				propertyName: 'name',
+				rules: [
 					ValidationRuleFactory.required(),
 					ValidationRuleFactory.maxLength(64),
 				],

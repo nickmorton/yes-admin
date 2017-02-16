@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="userForm">
 
 	<!--name: string;
 	dob: Date;
@@ -11,14 +11,15 @@
 
 	<div class="grid grid--gutters">
 		<div class="grid-cell">
-			<md-input [(ngModel)]="user.name" name="name" #name placeholder="Name" required>
-				<div [hidden]="name.valid || name.pristine">
-					Required.
+			<!--<md-input id="name" placeholder="Name" formControlName="name" [required]="true" [maxlength]="-1">-->
+			<md-input id="name" placeholder="Name" formControlName="name">
+				<div *ngIf="formErrors.name">
+					{{ formErrors.name }}
 				</div>
 			</md-input>
 		</div>
 
-		<div class="grid-cell">
+		<!--<div class="grid-cell">
 			<md-input [(ngModel)]="user.dob" type="date" name="dob" #dob placeholder="DoB"></md-input>
 			<md-checkbox [(ngModel)]="user.isDobApproximate" name="isDobApproximate" #isDobApproximate>Approximate?</md-checkbox>
 		</div>
@@ -34,7 +35,7 @@
 			<select [(ngModel)]="user.ethnicity" name="ethnicity" #ethnicity placeholder="Ethnicity">
 				<option *ngFor="let code of ethnicityCode | keys" [value]="code.value">{{code.key}}</option>
  			</select>
-		</div>
+		</div>-->
 	</div>
-	<button md-button type="submit" [disabled]="!userForm.form.valid">Save</button>
+	<button md-button type="submit">Save</button>
 </form>

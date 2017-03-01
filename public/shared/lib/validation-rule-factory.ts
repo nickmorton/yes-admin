@@ -1,5 +1,5 @@
 import { IModelBase } from './model-base';
-import { IValidationRule, ValidatorType } from './validator-base';
+import { IValidationRule, ValidationRuleType } from './validator-base';
 
 export class ValidationRuleFactory {
 	public static required<TEntity extends IModelBase>(): IValidationRule<TEntity> {
@@ -9,7 +9,7 @@ export class ValidationRuleFactory {
 				const value: any = entity[propertyName];
 				return value !== undefined && value !== null && value !== '';
 			},
-			validatorType: ValidatorType.required,
+			ruleType: ValidationRuleType.required,
 		};
 	};
 
@@ -20,7 +20,7 @@ export class ValidationRuleFactory {
 				const value: any = entity[propertyName];
 				return value !== undefined && value !== null && value.length <= max;
 			},
-			validatorType: ValidatorType.maxLength,
+			ruleType: ValidationRuleType.maxLength,
 			params: new Map<string, number>().set('max', max),
 		};
 	};
@@ -32,7 +32,7 @@ export class ValidationRuleFactory {
 				const value: any = entity[propertyName];
 				return value === undefined || value === null || value.length < min;
 			},
-			validatorType: ValidatorType.minLength,
+			ruleType: ValidationRuleType.minLength,
 			params: new Map<string, number>().set('min', min),
 		};
 	};

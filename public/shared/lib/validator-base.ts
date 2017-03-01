@@ -1,6 +1,6 @@
 import { IModelBase } from './model-base';
 
-export enum ValidatorType {
+export enum ValidationRuleType {
 	unknown = 0,
 	required,
 	minLength,
@@ -10,7 +10,7 @@ export enum ValidatorType {
 export interface IValidationRule<TEntity extends IModelBase> {
 	validate: (entity: TEntity, propertyName: string) => boolean;
 	failedMessage: string;
-	validatorType: ValidatorType;
+	ruleType: ValidationRuleType;
 	params?: Map<string, any>;
 };
 

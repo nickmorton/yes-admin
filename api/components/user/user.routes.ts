@@ -14,8 +14,8 @@ export function register(app: e.Application, config: IApiConfig) {
 		.get(`${baseUrl}/:id`, (req: e.Request, res: e.Response) => {
 			service.instance.getById({ data: req.params.id }).subscribe((response: IResponse<IUser>) => res.json(response));
 		})
-		.post(baseUrl, (req: e.Request, res: e.Response) => {
-			service.instance.get(req.body).subscribe((response: IPagedResponse<IUser>) => res.json(response));
+		.get(baseUrl, (req: e.Request, res: e.Response) => {
+			service.instance.get(req.query).subscribe((response: IPagedResponse<IUser>) => res.json(response));
 		})
 		.post(`${baseUrl}`, (req: e.Request, res: e.Response) => {
 			service.instance.add(req.body).subscribe((response: IResponse<IUser>) => res.json(response));

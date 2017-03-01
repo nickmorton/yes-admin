@@ -41,7 +41,7 @@ export class UserListResolve implements Resolve<IUserListData> {
 	};
 
 	public resolve(): Observable<IUserListData> {
-		return this.userService.get({ skip: 0, limit: 10 })
+		return this.userService.get({ skip: 0, limit: 100 })
 			.map((response: IPagedResponse<IUser>) => <IUserListData>{ users: response.entities });
 	};
 }

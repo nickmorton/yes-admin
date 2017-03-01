@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { ValidatorFactory } from './validator-factory';
+import { NgValidatorFactory } from './ng-validator-factory';
 
 @NgModule({
 })
@@ -9,7 +9,7 @@ export class LibModule {
 		return {
 			ngModule: LibModule,
 			providers: [
-				ValidatorFactory,
+				NgValidatorFactory,
 			],
 		};
 	};

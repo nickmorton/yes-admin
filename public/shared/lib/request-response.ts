@@ -5,9 +5,11 @@ export interface IRequest<TData> {
 }
 
 export interface IPagedRequest<TCriteria> {
-	skip: number;
-	limit: number;
+	// Search params are always strings.
+	skip: string | number;
+	limit: string | number;
 	criteria?: TCriteria;
+	[index: string]: any;
 }
 
 export interface IResponse<TEntity extends IModelBase> {
@@ -16,6 +18,4 @@ export interface IResponse<TEntity extends IModelBase> {
 
 export interface IPagedResponse<TEntity> {
 	entities: Array<TEntity>;
-	skip: number;
-	limit: number;
 }

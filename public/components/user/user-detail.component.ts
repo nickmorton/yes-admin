@@ -1,9 +1,9 @@
 import { Component, Injectable, SimpleChange, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs/rx';
 
-import { BaseComponent, ValidatorFactory } from '../../lib';
+import { FormBaseComponent, INgValidator, NgValidatorFactory } from '../../lib';
 import { UserService } from './user.service';
 import { IUser, UserValidator, EthnicityCode } from '../../shared/models';
 import { IResponse } from '../../shared/lib';
@@ -12,79 +12,69 @@ export interface IUserDetailData {
 	user: IUser;
 };
 
+interface IFormModel {
+	forename: string;
+	surname: string;
+}
+
 @Component({
 	templateUrl: 'components/user/user-detail.template.html',
 })
-export class UserDetailComponent extends BaseComponent implements OnInit {
+export class UserDetailComponent extends FormBaseComponent implements OnInit {
 	public user: IUser = <IUser>{};
-	public validators: Map<string, Array<ValidatorFn>>;
-	public isAddMode: boolean = true;
+	public validators: Map<string, Array<INgValidator>>;
 	public ethnicityCode: typeof EthnicityCode = EthnicityCode;
-	public formErrors: { name?: string } = {};
-	private userForm: FormGroup;
+	public formErrors: { [key: string]: Array<string> } = {};
+	protected form: FormGroup;
 
 	constructor(
 		private formBuilder: FormBuilder,
 		private router: Router,
 		private route: ActivatedRoute,
 		private userService: UserService,
-		validatorFactory: ValidatorFactory
+		validatorFactory: NgValidatorFactory
 	) {
 		super();
-		this.validators = validatorFactory.getNgValidators(UserValidator);
+		this.validators = validatorFactory.getValidators(UserValidator);
 	};
 
 	public ngOnInit() {
 		this.buildForm();
 		this.route.data.subscribe(
-			(result: { data: IUserDetailData }) => this.user = result.data.user || <IUser>{}
+			(result: { data: IUserDetailData }) => {
+				this.user = result.data.user || <IUser>{};
+				this.copyDataToFormModel();
+			}
 		);
 	};
 
 	public onSubmit = (): void => {
-		const source: Observable<IResponse<IUser>> = this.isAddMode
-			? this.userService.add({ data: this.user })
-			: this.userService.update({ data: this.user });
-		source.subscribe((response: IResponse<IUser>) => this.user = response.entity);
+		Object.assign(this.user, this.form.value);
+		const service: Observable<IResponse<IUser>> = this.user._id
+			? this.userService.update({ data: this.user })
+			: this.userService.add({ data: this.user });
+		service.subscribe((response: IResponse<IUser>) => this.user = response.entity);
 	}
 
-	private onValueChanged(change?: SimpleChange) {
-		if (!this.userForm) {
-			return;
-		}
-
-		// const form: FormGroup = this.userForm;
-		// for (const field in this.formErrors) {
-		// 	// clear previous error message (if any)
-		// 	this.formErrors[field] = '';
-		// 	const control = form.get(field);
-		// 	if (control && control.dirty && !control.valid) {
-		// 		const messages = this.validationMessages[field];
-		// 		for (const key in control.errors) {
-		// 			this.formErrors[field] += messages[key] + ' ';
-		// 		}
-		// 	}
-		// }
+	public onReset = () => {
+		this.copyDataToFormModel();
 	}
 
 	private buildForm = () => {
-
-		this.userForm = this.formBuilder.group({
-			'name': [ this.user.name, this.validators.get('name') ],
+		this.form = this.formBuilder.group({
+			'forename': ['', this.validators.get('forename').map((v: INgValidator) => v.validatorFn)],
+			'surname': ['', this.validators.get('surname').map((v: INgValidator) => v.validatorFn)],
 		});
 
-		// // this.userForm = this.formBuilder.group({
-		// // 	'name': [
-		// // 		this.user.name, [
-		// // 			Validators.required,
-		// // 			Validators.minLength(4),
-		// // 			Validators.maxLength(24),
-		// // 		],
-		// // 	],
-		// // });
-
-		this.userForm.valueChanges.subscribe(data => this.onValueChanged(data));
+		this.form.valueChanges.subscribe((change: SimpleChange) => this.onValueChanged(change));
 		this.onValueChanged();
+	}
+
+	private copyDataToFormModel = () => {
+		this.form.reset(<IFormModel>{
+			'forename': this.user.forename || '',
+			'surname': this.user.surname || '',
+		});
 	}
 }
 
@@ -100,6 +90,6 @@ export class UserDetailResolve implements Resolve<IUserDetailData> {
 				.map((response: IResponse<IUser>) => <IUserDetailData>{ user: response.entity });
 		}
 
-		return Observable.empty<IUserDetailData>();
+		return Observable.of({ user: this.userService.create()});
 	};
 }

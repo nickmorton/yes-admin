@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 
 import {
@@ -18,7 +18,12 @@ export class UserService {
 	};
 
 	public get = (request: IPagedRequest<IUser>): Observable<IPagedResponse<IUser>> => {
-		return this.http.post('/api/users', JSON.stringify(request))
+		const searchParams: URLSearchParams = new URLSearchParams();
+		Object.keys(request).forEach(
+			(paramName: string) => searchParams.append(paramName, request[paramName])
+		);
+
+		return this.http.get('/api/users', { search: searchParams })
 			.map((httpResponse: Response) => <IPagedResponse<IUser>>httpResponse.json());
 	};
 
@@ -28,12 +33,12 @@ export class UserService {
 	};
 
 	public add = (request: IRequest<IUser>): Observable<IResponse<IUser>> => {
-		return this.http.post('api/users', JSON.stringify(request))
+		return this.http.post('api/users', request)
 			.map((res: Response) => <IResponse<IUser>>res.json());
 	};
 
 	public update = (request: IRequest<IUser>): Observable<IResponse<IUser>> => {
-		return this.http.put('api/users', JSON.stringify(request))
+		return this.http.put('api/users', request)
 			.map((res: Response) => <IResponse<IUser>>res.json());
 	};
 
@@ -45,6 +50,7 @@ export class UserService {
 			employmentStatus: EmploymentStatusCode.unknown,
 			ethnicity: EthnicityCode.unknown,
 			familySupport: FamilySupportCode.unknown,
+			forename: null,
 			gender: 'F',
 			hasCurrentCV: false,
 			hasSkillsToFindJob: false,
@@ -53,7 +59,7 @@ export class UserService {
 			isSearchingForJob: false,
 			jobInterviewsInLastMonth: 0,
 			jobSearchFrequency: JobSearchFrequencyCode.unknown,
-			name: null,
+			surname: null,
 			visits: [],
 		};
 	};

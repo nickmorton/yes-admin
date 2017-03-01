@@ -8,5 +8,6 @@ export interface IIndividualBase extends IModelBase {
 	gender: 'M' | 'F';
 	housingStatus: HousingStatusCode;
 	isDobApproximate: boolean;
-	name: string;
+	forename: string;
+	surname: string;
 };

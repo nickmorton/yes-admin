@@ -13,11 +13,9 @@ export class UserService {
 	};
 
 	public get = (request: IPagedRequest<void>): Observable<IPagedResponse<IUser>> => {
-		return this.repository.get({ skip: request.skip, limit: request.limit })
+		return this.repository.get({ skip: +request.skip, limit: +request.limit })
 			.map((users: Array<IUser>): IPagedResponse<IUser> => <IPagedResponse<IUser>>{
 				entities: users,
-				skip: request.skip,
-				limit: request.limit,
 			});
 	};
 

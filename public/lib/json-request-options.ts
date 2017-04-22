@@ -7,5 +7,5 @@ export class JsonRequestOptions extends BaseRequestOptions {
 		this.headers.append('Accept', 'text/plain');
 		this.headers.append('Accept', '*/*');
 		this.headers.append('Content-Type', 'application/json');
-	};
+	}
 }

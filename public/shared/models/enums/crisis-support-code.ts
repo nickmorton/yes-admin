@@ -6,4 +6,4 @@ export enum CrisisSupportCode {
 	otherPublicServicesSupportWorker = 4,
 	youthEnquiryService = 5,
 	none = 6,
-};
+}

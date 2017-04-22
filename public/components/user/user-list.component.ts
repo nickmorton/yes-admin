@@ -8,7 +8,7 @@ import { IPagedResponse } from '../../shared/lib';
 
 interface IUserListData {
 	users: Array<IUser>;
-};
+}
 
 @Component({
 	selector: 'user-list',
@@ -19,29 +19,29 @@ export class UserListComponent extends BaseComponent implements OnInit {
 
 	constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) {
 		super();
-	};
+	}
 
 	public ngOnInit() {
 		this.route.data.subscribe(
 			(result: {data: IUserListData }) => {
 				this.users = result.data.users;
-			}
+			},
 		);
-	};
+	}
 
 	public view = (user: IUser): boolean => {
 		this.router.navigate(['/users', user._id]);
 		return false;
-	};
+	}
 }
 
 @Injectable()
 export class UserListResolve implements Resolve<IUserListData> {
 	constructor(private userService: UserService) {
-	};
+	}
 
 	public resolve(): Observable<IUserListData> {
 		return this.userService.get({ skip: 0, limit: 100 })
 			.map((response: IPagedResponse<IUser>) => <IUserListData>{ users: response.entities });
-	};
+	}
 }

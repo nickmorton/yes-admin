@@ -10,7 +10,7 @@ import { IResponse } from '../../shared/lib';
 
 export interface IUserDetailData {
 	user: IUser;
-};
+}
 
 interface IFormModel {
 	forename: string;
@@ -34,11 +34,11 @@ export class UserDetailComponent extends FormBaseComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private userService: UserService,
-		validatorFactory: NgValidatorFactory
+		validatorFactory: NgValidatorFactory,
 	) {
 		super();
 		this.validators = validatorFactory.getValidators(UserValidator);
-	};
+	}
 
 	public ngOnInit() {
 		this.buildForm();
@@ -46,9 +46,9 @@ export class UserDetailComponent extends FormBaseComponent implements OnInit {
 			(result: { data: IUserDetailData }) => {
 				this.user = result.data.user || <IUser>{};
 				this.copyDataToFormModel();
-			}
+			},
 		);
-	};
+	}
 
 	public onSubmit = (): void => {
 		Object.assign(this.user, this.form.value);
@@ -85,7 +85,7 @@ export class UserDetailComponent extends FormBaseComponent implements OnInit {
 @Injectable()
 export class UserDetailResolve implements Resolve<IUserDetailData> {
 	constructor(private userService: UserService) {
-	};
+	}
 
 	public resolve(route: ActivatedRouteSnapshot): Observable<IUserDetailData> {
 		const id: string = route.params['userId'];
@@ -95,5 +95,5 @@ export class UserDetailResolve implements Resolve<IUserDetailData> {
 		}
 
 		return Observable.of({ user: this.userService.create() });
-	};
+	}
 }

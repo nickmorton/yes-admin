@@ -5,4 +5,4 @@ export enum JobSearchFrequencyCode {
 	weekly = 3,
 	moreThanMonthly = 4,
 	occasionally = 5,
-};
+}

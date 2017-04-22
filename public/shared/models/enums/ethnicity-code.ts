@@ -17,7 +17,7 @@ export enum EthnicityCode {
 	W2 = 15,
 	W9 = 16,
 	NS = 17,
-};
+}
 // // export type EthnicityCode =
 // // 	'A1' |
 // // 	'A2' |

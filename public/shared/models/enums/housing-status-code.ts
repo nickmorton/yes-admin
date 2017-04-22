@@ -5,4 +5,4 @@ export enum HousingStatusCode {
 	livingWithParents = 3,
 	temporaryAccommodartion = 4,
 	ownProperty = 5,
-};
+}

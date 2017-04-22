@@ -6,9 +6,9 @@ export class BaseComponent implements OnDestroy {
 
 	public addForDisposal = (subscription: Subscription) => {
 		this.disposables.push(subscription);
-	};
+	}
 
 	public ngOnDestroy() {
 		this.disposables.forEach((s: Subscription) => s.unsubscribe);
-	};
+	}
 }

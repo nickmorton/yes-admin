@@ -15,21 +15,21 @@ import {
 export interface IGetAllCriteria {
 	skip: number;
 	limit: number;
-};
+}
 
 export interface IRepository<TEntity extends IModelBase> {
 	getById(id: string): Observable<TEntity>;
 	get(criteria?: IGetAllCriteria): Observable<Array<TEntity>>;
 	add(entity: TEntity): Observable<TEntity>;
 	update(entity: TEntity): Observable<TEntity>;
-};
+}
 
 export abstract class RepositoryBase<TEntity extends IModelBase> implements IRepository<TEntity> {
 	constructor(
 		private config: IApiConfig,
 		private collectionName: string,
 		private validator: IValidator<TEntity>) {
-	};
+	}
 
 	public abstract getById(id: string): Observable<TEntity>;
 	public abstract get(criteria?: IGetAllCriteria): Observable<Array<TEntity>>;
@@ -50,7 +50,7 @@ export abstract class RepositoryBase<TEntity extends IModelBase> implements IRep
 		}
 
 		throw new Error('Validation failed');
-	};
+	}
 
 	public update(entity: TEntity): Observable<TEntity> {
 		if (this.validator.validate(entity)) {
@@ -71,7 +71,7 @@ export abstract class RepositoryBase<TEntity extends IModelBase> implements IRep
 		}
 
 		throw new Error('Validation failed');
-	};
+	}
 
 	protected dbExecute<TResult>(callback: (collection: Collection, subject: Subject<TResult>) => void): Subject<TResult> {
 		const subject: Subject<TResult> = new Subject<TResult>();
@@ -80,5 +80,5 @@ export abstract class RepositoryBase<TEntity extends IModelBase> implements IRep
 		});
 
 		return subject;
-	};
+	}
 }

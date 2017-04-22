@@ -11,7 +11,7 @@ import { homeRouting } from './home.routing';
 		imports: [
 			homeRouting,
 		],
-	}
+	},
 )
 export class HomeModule {
 }

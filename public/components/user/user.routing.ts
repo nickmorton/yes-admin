@@ -16,7 +16,7 @@ const routes: Routes = [
 			{
 				path: 'add',
 				component: UserDetailComponent,
-				resolve: { data: UserDetailResolve }
+				resolve: { data: UserDetailResolve },
 			},
 			{
 				path: ':userId',

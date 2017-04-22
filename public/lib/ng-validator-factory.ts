@@ -11,7 +11,7 @@ export interface INgValidator {
 @Injectable()
 export class NgValidatorFactory {
 	public getValidators = <TEntity extends IModelBase, TEntityValidator extends IValidator<TEntity>>(
-		entityValidator: { new (): TEntityValidator; }
+		entityValidator: { new (): TEntityValidator; },
 	): Map<string, Array<INgValidator>> => {
 		const validatorInstance: TEntityValidator = new entityValidator();
 		const propertyValidators: Map<string, Array<INgValidator>> = new Map<string, Array<INgValidator>>();
@@ -27,10 +27,10 @@ export class NgValidatorFactory {
 		});
 
 		return propertyValidators;
-	};
+	}
 
 	private resolveNgValidator = <TEntity extends IModelBase, TValidationRule extends IValidationRule<TEntity>>(
-		validationRule: TValidationRule
+		validationRule: TValidationRule,
 	): INgValidator => {
 		let name: string;
 		let validatorFn: ValidatorFn;
@@ -59,5 +59,5 @@ export class NgValidatorFactory {
 			validatorFn: validatorFn,
 			errorMessage: validationRule.failedMessage,
 		};
-	};
+	}
 }

@@ -5,12 +5,12 @@ import { ObjectID, Collection, MongoError } from 'mongodb';
 import { Observable, Subject } from 'rxjs/Rx';
 
 export interface IUserRepository extends IRepository<IUser> {
-};
+}
 
 export class UserRepository extends RepositoryBase<IUser> implements IUserRepository {
 	constructor(config: IApiConfig, validator: UserValidator) {
 		super(config, 'users', validator);
-	};
+	}
 
 	// // db.users.insert({ forename: 'Nick', surname: 'Morton', dob: new Date(1959, 9, 20) })
 	// // db.users.insert({ forename: 'Liz', surname: 'Morton', dob: new Date(1969, 5, 24) })
@@ -27,7 +27,7 @@ export class UserRepository extends RepositoryBase<IUser> implements IUserReposi
 				subject.complete();
 			});
 		});
-	};
+	}
 
 	public get(criteria: IGetAllCriteria): Observable<Array<IUser>> {
 		return this.dbExecute<Array<IUser>>((collection: Collection, subject: Subject<Array<IUser>>) => {
@@ -42,5 +42,5 @@ export class UserRepository extends RepositoryBase<IUser> implements IUserReposi
 					subject.complete();
 				});
 		});
-	};
+	}
 }

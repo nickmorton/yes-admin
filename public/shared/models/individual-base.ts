@@ -10,4 +10,4 @@ export interface IIndividualBase extends IModelBase {
 	isDobApproximate: boolean;
 	forename: string;
 	surname: string;
-};
+}

@@ -15,32 +15,30 @@ import { IRequest, IResponse, IPagedRequest, IPagedResponse } from '../../shared
 @Injectable()
 export class UserService {
 	constructor(private http: Http) {
-	};
+	}
 
 	public get = (request: IPagedRequest<IUser>): Observable<IPagedResponse<IUser>> => {
 		const searchParams: URLSearchParams = new URLSearchParams();
-		Object.keys(request).forEach(
-			(paramName: string) => searchParams.append(paramName, request[paramName])
-		);
+		Object.keys(request).forEach((paramName: string) => searchParams.append(paramName, request[paramName]));
 
 		return this.http.get('/api/users', { search: searchParams })
 			.map((httpResponse: Response) => <IPagedResponse<IUser>>httpResponse.json());
-	};
+	}
 
 	public getById = (id: string): Observable<IResponse<IUser>> => {
 		return this.http.get(`/api/users/${id}`)
 			.map((res: Response) => <IResponse<IUser>>res.json());
-	};
+	}
 
 	public add = (request: IRequest<IUser>): Observable<IResponse<IUser>> => {
 		return this.http.post('api/users', request)
 			.map((res: Response) => <IResponse<IUser>>res.json());
-	};
+	}
 
 	public update = (request: IRequest<IUser>): Observable<IResponse<IUser>> => {
 		return this.http.put('api/users', request)
 			.map((res: Response) => <IResponse<IUser>>res.json());
-	};
+	}
 
 	public create = (): IUser => {
 		return <IUser>{
@@ -62,7 +60,7 @@ export class UserService {
 			surname: null,
 			visits: [],
 		};
-	};
+	}
 }
 
 			// // gender: 'M',

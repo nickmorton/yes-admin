@@ -7,4 +7,4 @@ export enum EmploymentStatusCode {
 	fullTimeEducation = 5,
 	partTimeEducation = 6,
 	unemployed = 7,
-};
+}

@@ -10,13 +10,13 @@ export interface IUser extends IIndividualBase {
 	jobInterviewsInLastMonth: number;
 	jobSearchFrequency: JobSearchFrequencyCode;
 	visits: Array<IUserVisit>;
-};
+}
 
 export interface IUserVisit {
 	date: Date;
 	wasByAppointment: boolean;
 	issue: IssueCode;
-};
+}
 
 export class UserValidator extends ValidatorBase<IUser> {
 	constructor() {
@@ -36,9 +36,9 @@ export class UserValidator extends ValidatorBase<IUser> {
 				],
 			},
 		]);
-	};
+	}
 
 	public validate(entity: IUser): boolean {
 		return super.validate(entity);
 	}
-};
+}

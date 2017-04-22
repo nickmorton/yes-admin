@@ -11,7 +11,7 @@ export class ValidationRuleFactory {
 			},
 			ruleType: ValidationRuleType.required,
 		};
-	};
+	}
 
 	public static maxLength<TEntity extends IModelBase>(max: number): IValidationRule<TEntity> {
 		return {
@@ -23,7 +23,7 @@ export class ValidationRuleFactory {
 			ruleType: ValidationRuleType.maxLength,
 			params: new Map<string, number>().set('max', max),
 		};
-	};
+	}
 
 	public static minLength<TEntity extends IModelBase>(min: number): IValidationRule<TEntity> {
 		return {
@@ -35,5 +35,5 @@ export class ValidationRuleFactory {
 			ruleType: ValidationRuleType.minLength,
 			params: new Map<string, number>().set('min', min),
 		};
-	};
+	}
 }

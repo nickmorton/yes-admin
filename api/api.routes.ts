@@ -22,4 +22,4 @@ export function register(app: Application, config: IApiConfig) {
 		});
 
 	users.register(app, config);
-};
+}

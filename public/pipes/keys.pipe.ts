@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 interface IKeyValue {
 	value: number;
 	key: string;
-};
+}
 
 @Pipe({
 	name: 'keys',
@@ -15,5 +15,5 @@ export class KeysPipe implements PipeTransform {
 			.filter((n: number) => !isNaN(n))
 			.map((n: number): IKeyValue => <IKeyValue>{ value: n, key: value[n] });
 		return keys;
-	};
+	}
 }

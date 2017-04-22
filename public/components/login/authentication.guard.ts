@@ -6,7 +6,7 @@ import { AuthenticationService } from './authentication.service';
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
 	constructor(private router: Router, private authenticationService: AuthenticationService) {
-	};
+	}
 
 	public canActivate(): boolean | Observable<boolean> {
 		if (this.authenticationService.isLoggedIn) {
@@ -15,5 +15,5 @@ export class AuthenticationGuard implements CanActivate {
 
 		this.router.navigate(['/login']);
 		return false;
-	};
+	}
 }

@@ -23,4 +23,4 @@ export function register(app: e.Application, config: IApiConfig) {
 		.put(`${baseUrl}`, (req: e.Request, res: e.Response) => {
 			service.instance.update(req.body).subscribe((response: IResponse<IUser>) => res.json(response));
 		});
-};
+}

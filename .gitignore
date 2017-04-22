@@ -5,3 +5,4 @@ npm-debug.log
 public/node_modules
 **/*.js.map
 **/*.js
+**/*.css

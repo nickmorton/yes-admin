@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { UserComponent } from './user.component';
 import { UserListComponent, UserListResolve } from './user-list.component';
 import { UserDetailComponent, UserDetailResolve } from './user-detail.component';
@@ -12,21 +14,22 @@ import { PipesModule } from '../../pipes/pipes.module';
 @NgModule({
 	imports: [
 		userRoutes,
-		MaterialModule,
 		CommonModule,
+		FlexLayoutModule,
 		FormsModule,
-		ReactiveFormsModule,
+		MaterialModule,
 		PipesModule,
+		ReactiveFormsModule,
 	],
 	declarations: [
 		UserComponent,
-		UserListComponent,
 		UserDetailComponent,
+		UserListComponent,
 	],
 	providers: [
-		UserService,
 		UserDetailResolve,
 		UserListResolve,
+		UserService,
 	],
 })
 export class UserModule {

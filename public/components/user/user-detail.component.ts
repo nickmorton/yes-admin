@@ -18,7 +18,9 @@ interface IFormModel {
 }
 
 @Component({
-	templateUrl: 'components/user/user-detail.template.html',
+	moduleId: module.id,
+	templateUrl: 'user-detail.template.html',
+	styleUrls: ['user-detail.style.css'],
 })
 export class UserDetailComponent extends FormBaseComponent implements OnInit {
 	public user: IUser = <IUser>{};
@@ -64,6 +66,7 @@ export class UserDetailComponent extends FormBaseComponent implements OnInit {
 		this.form = this.formBuilder.group({
 			'forename': ['', this.validators.get('forename').map((v: INgValidator) => v.validatorFn)],
 			'surname': ['', this.validators.get('surname').map((v: INgValidator) => v.validatorFn)],
+			'gender': [],
 		});
 
 		this.form.valueChanges.subscribe((change: SimpleChange) => this.onValueChanged(change));
@@ -74,6 +77,7 @@ export class UserDetailComponent extends FormBaseComponent implements OnInit {
 		this.form.reset(<IFormModel>{
 			'forename': this.user.forename || '',
 			'surname': this.user.surname || '',
+			'gender': this.user.gender,
 		});
 	}
 }
@@ -90,6 +94,6 @@ export class UserDetailResolve implements Resolve<IUserDetailData> {
 				.map((response: IResponse<IUser>) => <IUserDetailData>{ user: response.entity });
 		}
 
-		return Observable.of({ user: this.userService.create()});
+		return Observable.of({ user: this.userService.create() });
 	};
 }

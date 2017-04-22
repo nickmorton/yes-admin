@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-
 // Import modules.
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from '@angular/material';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
 import { LibModule } from '../../lib/lib.module';
 import { HomeModule } from '../home/home.module';
 import { UserModule } from '../user/user.module';
@@ -22,12 +23,13 @@ import { PageNotFoundComponent } from './page-not-found.component';
 		PageNotFoundComponent,
 	],
 	imports: [
+		BrowserAnimationsModule,
 		BrowserModule,
-		RouterModule,
 		CommonModule,
-		MaterialModule.forRoot(),
-		FlexLayoutModule.forRoot(),
+		FlexLayoutModule,
 		LibModule.forRoot(),
+		MaterialModule,
+		RouterModule,
 
 		// App modules.
 		appRouting,

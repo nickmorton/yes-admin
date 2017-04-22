@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	exec = require('child_process').exec;
-	tslint = require('gulp-tslint');
+tslint = require('gulp-tslint');
 
 gulp.task('build-watch', ['sass', 'tsc', 'tslint'], function () {
 	gulp.watch('public/**/*.scss', ['sass']);
@@ -26,6 +26,8 @@ gulp.task('sass', function () {
 
 gulp.task('tslint', function () {
 	return gulp.src(['./**/*.ts', '!./node_modules/**', '!public/node_modules/**', '!./typings/**', '!public/typings/**'])
-		.pipe(tslint())
-        .pipe(tslint.report("verbose"));
+		.pipe(tslint({
+			formatter: "verbose"
+		}))
+		.pipe(tslint.report());
 });

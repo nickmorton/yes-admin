@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/rx';
 
 import { FormBaseComponent, INgValidator, NgValidatorFactory } from '../../lib';
 import { UserService } from './user.service';
-import { IUser, UserValidator, EthnicityCode } from '../../shared/models';
+import { IUser, UserValidator, CrisisSupportCode, EthnicityCode, FamilySupportCode } from '../../shared/models';
 import { IResponse } from '../../shared/lib';
 
 export interface IUserDetailData {
@@ -13,7 +13,11 @@ export interface IUserDetailData {
 }
 
 interface IFormModel {
+	crisisSupport: Array<CrisisSupportCode>;
+	ethnicity: EthnicityCode;
+	familySupport: FamilySupportCode;
 	forename: string;
+	gender: 'F' | 'M';
 	surname: string;
 }
 
@@ -25,9 +29,11 @@ interface IFormModel {
 export class UserDetailComponent extends FormBaseComponent implements OnInit {
 	public user: IUser = <IUser>{};
 	public validators: Map<string, Array<INgValidator>>;
+	public crisisSupportCode: typeof CrisisSupportCode = CrisisSupportCode;
 	public ethnicityCode: typeof EthnicityCode = EthnicityCode;
+	public familySupportCode: typeof FamilySupportCode = FamilySupportCode;
 	public formErrors: { [key: string]: Array<string> } = {};
-	protected form: FormGroup;
+	public form: FormGroup;
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -63,22 +69,29 @@ export class UserDetailComponent extends FormBaseComponent implements OnInit {
 	}
 
 	private buildForm = () => {
-		this.form = this.formBuilder.group({
-			'forename': ['', this.validators.get('forename').map((v: INgValidator) => v.validatorFn)],
-			'surname': ['', this.validators.get('surname').map((v: INgValidator) => v.validatorFn)],
-			'gender': [],
-		});
+		this.form = this.formBuilder.group(this.createFormGroup(
+			'crisisSupport',
+			'ethnicity',
+			'familySupport',
+			'forename',
+			'gender',
+			'surname',
+		));
 
 		this.form.valueChanges.subscribe((change: SimpleChange) => this.onValueChanged(change));
 		this.onValueChanged();
 	}
 
 	private copyDataToFormModel = () => {
-		this.form.reset(<IFormModel>{
-			'forename': this.user.forename || '',
-			'surname': this.user.surname || '',
-			'gender': this.user.gender,
-		});
+		const formModel: IFormModel = {
+			crisisSupport: this.user.crisisSupport,
+			ethnicity: this.user.ethnicity,
+			familySupport: this.user.familySupport,
+			forename: this.user.forename || '',
+			gender: this.user.gender,
+			surname: this.user.surname || '',
+		};
+		this.form.reset(formModel);
 	}
 }
 

@@ -1,5 +1,5 @@
 import { SimpleChange } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ValidatorFn } from '@angular/forms';
 import { BaseComponent } from './base.component';
 import { INgValidator } from './ng-validator-factory';
 
@@ -26,5 +26,19 @@ export abstract class FormBaseComponent extends BaseComponent {
 				this.formErrors[controlName] = null;
 			}
 		});
+	}
+
+	protected createFormGroup(...propertyNames: Array<string>): { [key: string]: any } {
+		const group: { [key: string]: any } = {};
+		propertyNames.forEach((name: string) => {
+			const validators: Array<INgValidator> = this.validators.get(name);
+			if (validators) {
+				group[name] = ['', validators.map((v: INgValidator) => v.validatorFn)];
+			} else {
+				group[name] = [];
+			}
+		});
+
+		return group;
 	}
 }

@@ -1,14 +1,3 @@
-<div>
-<md-input-container class="example-full-width">
-      <input mdInput placeholder="City">
-</md-input-container>
-</div>
-<div>
-	<md-radio-group>
-	<md-radio-button value="1">Option 1</md-radio-button>
-	<md-radio-button value="2">Option 2</md-radio-button>
-	</md-radio-group>
-</div>
 <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
 
 	<!--name: string;
@@ -22,7 +11,7 @@
 	<div fxLayout="row">
 		<!-- Column 1 -->
 		<div fxFlex>
-			<div fxLayout="column" fxLayoutAlign="start stretch">
+			<div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="2px">
 				<div fxFlex>
 					<md-input-container class="full-width">
 						<input mdInput id="forename" formControlName="forename" placeholder="Forename" required>
@@ -39,12 +28,36 @@
 						{{ error }}
 					</div>
 				</div>
-	
-				<div fxFlex>
+
+				<div fxFlex="1 1 50px">
 					<md-radio-group id="gender" formControlName="gender" placeholder="Gender">
 						<md-radio-button value="F">Female</md-radio-button>
 						<md-radio-button value="M">Male</md-radio-button>
 					</md-radio-group>
+				</div>
+
+				<div fxFlex>
+					<p>
+						<md-select id="ethnicity" formControlName="ethnicity" placeholder="Ethnicity">
+							<md-option *ngFor="let code of ethnicityCode | keys" [value]="code.value">{{code.key}}</md-option>
+						</md-select>
+					</p>
+				</div>
+
+				<div fxFlex>
+					<p>
+						<md-select id="familySupport" formControlName="familySupport" placeholder="Family Support">
+							<md-option *ngFor="let code of familySupportCode | keys" [value]="code.value">{{code.key}}</md-option>
+						</md-select>
+					</p>
+				</div>
+
+				<div fxFlex>
+					<p>
+						<md-select id="crisisSupport" formControlName="crisisSupport" placeholder="Crisis Support" [multiple]="true">
+							<md-option *ngFor="let code of crisisSupportCode | keys" [value]="code.value">{{code.key}}</md-option>
+						</md-select>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -69,6 +82,8 @@
 			</div>-->
 		</div>
 	</div>
-	<button md-raised-button type="submit" [disabled]="form.pristine">Save</button>
-	<button md-raised-button type="reset" (click)="onReset()" [disabled]="form.pristine">Reset</button>
+	<p>
+		<button md-raised-button type="submit" [disabled]="form.pristine">Save</button>
+		<button md-raised-button type="reset" (click)="onReset()" [disabled]="form.pristine">Reset</button>
+	</p>
 </form>

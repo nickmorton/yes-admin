@@ -16,18 +16,18 @@ export class UserRepository extends RepositoryBase<IUser> implements IUserReposi
 	// // db.users.insert({ forename: 'Liz', surname: 'Morton', dob: new Date(1969, 5, 24) })
 	// // db.users.insert({ forename: 'Nathan', surname: 'Morton', dob: new Date(2005, 6, 15) })
 
-	public getById(id: string): Observable<IUser> {
-		return this.dbExecute<IUser>((collection: Collection, subject: Subject<IUser>) => {
-			collection.find({ _id: new ObjectID(id) }).limit(1).next((err: MongoError, user: IUser): void => {
-				if (err) {
-					throw new Error(err.message);
-				}
+	// // public getById(id: string): Observable<IUser> {
+	// // 	return this.dbExecute<IUser>((collection: Collection, subject: Subject<IUser>) => {
+	// // 		collection.find({ _id: new ObjectID(id) }).limit(1).next((err: MongoError, user: IUser): void => {
+	// // 			if (err) {
+	// // 				throw new Error(err.message);
+	// // 			}
 
-				subject.next(user);
-				subject.complete();
-			});
-		});
-	}
+	// // 			subject.next(user);
+	// // 			subject.complete();
+	// // 		});
+	// // 	});
+	// // }
 
 	public get(criteria: IGetAllCriteria): Observable<Array<IUser>> {
 		return this.dbExecute<Array<IUser>>((collection: Collection, subject: Subject<Array<IUser>>) => {

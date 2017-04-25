@@ -31,7 +31,6 @@ export abstract class RepositoryBase<TEntity extends IModelBase> implements IRep
 		private validator: IValidator<TEntity>) {
 	}
 
-	public abstract getById(id: string): Observable<TEntity>;
 	public abstract get(criteria?: IGetAllCriteria): Observable<Array<TEntity>>;
 
 	public add(entity: TEntity): Observable<TEntity> {
@@ -51,6 +50,19 @@ export abstract class RepositoryBase<TEntity extends IModelBase> implements IRep
 		}
 
 		throw new Error('Validation failed');
+	}
+
+	public getById(id: string): Observable<TEntity> {
+		return this.dbExecute<TEntity>((collection: Collection, subject: Subject<TEntity>) => {
+			collection.find({ _id: new ObjectID(id) }).limit(1).next((err: MongoError, user: TEntity): void => {
+				if (err) {
+					throw new Error(err.message);
+				}
+
+				subject.next(user);
+				subject.complete();
+			});
+		});
 	}
 
 	public update(entity: TEntity): Observable<TEntity> {

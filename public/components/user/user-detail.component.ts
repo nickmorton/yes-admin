@@ -5,8 +5,9 @@ import { Observable } from 'rxjs/rx';
 
 import { FormBaseComponent, INgValidator, NgValidatorFactory } from '../../lib';
 import { UserService } from './user.service';
-import { IUser, UserValidator, CrisisSupportCode, EthnicityCode, FamilySupportCode } from '../../shared/models';
+import { IUser, UserValidator, CrisisSupportCode, EthnicityCode, FamilySupportCode, TGender } from '../../shared/models';
 import { IResponse } from '../../shared/lib';
+import { tansformSlideInOut } from './user-detail.animations';
 
 export interface IUserDetailData {
 	user: IUser;
@@ -17,7 +18,9 @@ interface IFormModel {
 	ethnicity: EthnicityCode;
 	familySupport: FamilySupportCode;
 	forename: string;
-	gender: 'F' | 'M';
+	gender: TGender;
+	dob: Date;
+	isDobApproximate: boolean;
 	surname: string;
 }
 
@@ -25,6 +28,7 @@ interface IFormModel {
 	moduleId: module.id,
 	templateUrl: 'user-detail.template.html',
 	styleUrls: ['user-detail.style.css'],
+	animations: [tansformSlideInOut]
 })
 export class UserDetailComponent extends FormBaseComponent implements OnInit {
 	public user: IUser = <IUser>{};
@@ -71,10 +75,12 @@ export class UserDetailComponent extends FormBaseComponent implements OnInit {
 	private buildForm = () => {
 		this.form = this.formBuilder.group(this.createFormGroup(
 			'crisisSupport',
+			'dob',
 			'ethnicity',
 			'familySupport',
 			'forename',
 			'gender',
+			'isDobApproximate',
 			'surname',
 		));
 
@@ -85,10 +91,12 @@ export class UserDetailComponent extends FormBaseComponent implements OnInit {
 	private copyDataToFormModel = () => {
 		const formModel: IFormModel = {
 			crisisSupport: this.user.crisisSupport,
+			dob: this.user.dob,
 			ethnicity: this.user.ethnicity,
 			familySupport: this.user.familySupport,
 			forename: this.user.forename || '',
 			gender: this.user.gender,
+			isDobApproximate: this.user.isDobApproximate,
 			surname: this.user.surname || '',
 		};
 		this.form.reset(formModel);

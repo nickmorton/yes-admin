@@ -9,6 +9,7 @@ import {
 	HousingStatusCode,
 	IUser,
 	JobSearchFrequencyCode,
+	TGender
 } from '../../shared/models';
 import { IRequest, IResponse, IPagedRequest, IPagedResponse } from '../../shared/lib';
 
@@ -49,7 +50,7 @@ export class UserService {
 			ethnicity: EthnicityCode.unknown,
 			familySupport: FamilySupportCode.unknown,
 			forename: null,
-			gender: 'F',
+			gender: 'Female',
 			hasCurrentCV: false,
 			hasSkillsToFindJob: false,
 			housingStatus: HousingStatusCode.unknown,

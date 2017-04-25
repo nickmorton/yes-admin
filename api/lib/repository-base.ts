@@ -37,6 +37,7 @@ export abstract class RepositoryBase<TEntity extends IModelBase> implements IRep
 	public add(entity: TEntity): Observable<TEntity> {
 		if (this.validator.validate(entity)) {
 			return this.dbExecute<TEntity>((collection: Collection, subject: Subject<TEntity>) => {
+				entity.lastUpdated = entity.createdDate = new Date();
 				collection.insertOne(entity, (err: WriteError, result: InsertOneWriteOpResult) => {
 					if (err) {
 						throw new Error(err.errmsg);
@@ -57,6 +58,7 @@ export abstract class RepositoryBase<TEntity extends IModelBase> implements IRep
 			return this.dbExecute<TEntity>((collection: Collection, subject: Subject<TEntity>) => {
 				const id: ObjectID = new ObjectID(entity._id);
 				delete entity._id;
+				entity.lastUpdated = new Date();
 				collection.replaceOne({ _id: id }, entity, (err: WriteError, result: UpdateWriteOpResult) => {
 					if (err) {
 						throw new Error(err.errmsg);

@@ -1,7 +1,7 @@
 import { IModelBase } from '../lib';
 import { EmploymentStatusCode, EthnicityCode, HousingStatusCode } from './';
 
-export type TGender = 'M' | 'F';
+export type TGender = 'Male' | 'Female';
 
 export interface IIndividualBase extends IModelBase {
 	dob: Date;

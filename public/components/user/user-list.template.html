@@ -1,18 +1,10 @@
-<table>
-	<thead>
-		<tr>
-			<th>_id</th>
-			<th>surname</th>
-			<th>forename</th>
-			<th>dob</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let user of users">
-			<td>{{user._id}}</td>
-			<td><a href="#" (click)="view(user)">{{user.surname}}</a></td>
-			<td>{{user.forename}}</td>
-			<td>{{user.dob}}</td>
-		</tr>
-	</tbody>
-</table>
+<md-nav-list>
+	<md-list-item *ngFor="let user of users">
+		<a md-line href="#" (click)="view(user)">
+			<h3>{{user.forename}} {{user.surname}}</h3>
+		</a>
+		<p md-line>
+			<em>{{user.gender}}</em> <span *ngIf="user.dob">born</span> <em>{{user.dob | date}}</em>
+		</p>
+	</md-list-item>
+</md-nav-list>

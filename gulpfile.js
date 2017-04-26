@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
 	sass = require('gulp-sass'),
-	exec = require('child_process').exec;
-tslint = require('gulp-tslint');
+	exec = require('child_process').exec,
+	tslint = require('gulp-tslint');
 
 gulp.task('build-watch', ['sass', 'tsc', 'tslint'], function () {
 	gulp.watch('public/**/*.scss', ['sass']);

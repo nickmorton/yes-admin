@@ -9,6 +9,7 @@ export interface IUser extends IIndividualBase {
 	isSearchingForJob: boolean;
 	jobInterviewsInLastMonth: number;
 	jobSearchFrequency: JobSearchFrequencyCode;
+	lastVisited: Date;
 	visits: Array<IUserVisit>;
 }
 

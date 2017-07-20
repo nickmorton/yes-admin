@@ -10,11 +10,13 @@ import { UserDetailComponent, UserDetailResolve } from './user-detail.component'
 import { UserService } from './user.service';
 import { userRoutes } from './user.routing';
 import { PipesModule } from '../../pipes/pipes.module';
+import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({
 	imports: [
 		userRoutes,
 		CommonModule,
+		DirectivesModule,
 		FlexLayoutModule,
 		FormsModule,
 		MaterialModule,

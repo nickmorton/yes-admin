@@ -10,6 +10,7 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "removeComments": false,
+    "skipLibCheck": true,
     "sourceMap": true,
     "target": "es5"
   },

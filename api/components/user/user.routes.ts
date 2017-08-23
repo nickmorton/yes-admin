@@ -6,7 +6,6 @@ import { UserService } from './user.service';
 import { IUser, UserValidator } from '../../../public/shared/models';
 import { IResponse, IPagedResponse } from '../../../public/shared/lib';
 import { Lazy } from '../../lib';
-import 'rxjs/rx';
 
 export function register(app: e.Application, config: IApiConfig) {
 	const baseUrl = '/api/users';
@@ -15,15 +14,15 @@ export function register(app: e.Application, config: IApiConfig) {
 	);
 	app
 		.get(`${baseUrl}/:id`, (req: e.Request, res: e.Response) => {
-			service.instance.getById({ data: req.params.id }).subscribe((response: IResponse<IUser>) => res.json(response));
+			service.instance.getById({ data: req.params.id }).then((response: IResponse<IUser>) => res.json(response));
 		})
 		.get(baseUrl, (req: e.Request, res: e.Response) => {
-			service.instance.get(req.query).subscribe((response: IPagedResponse<IUser>) => res.json(response));
+			service.instance.get(req.query).then((response: IPagedResponse<IUser>) => res.json(response));
 		})
 		.post(`${baseUrl}`, (req: e.Request, res: e.Response) => {
-			service.instance.add(req.body).subscribe((response: IResponse<IUser>) => res.json(response));
+			service.instance.add(req.body).then((response: IResponse<IUser>) => res.json(response));
 		})
 		.put(`${baseUrl}`, (req: e.Request, res: e.Response) => {
-			service.instance.update(req.body).subscribe((response: IResponse<IUser>) => res.json(response));
+			service.instance.update(req.body).then((response: IResponse<IUser>) => res.json(response));
 		});
 }

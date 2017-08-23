@@ -1,6 +1,5 @@
 import { IApiConfig } from '../api.config';
 import { IModelBase, IValidator } from '../../public/shared/lib';
-import { Observable, Subject } from 'rxjs/Rx';
 import {
 	MongoClient,
 	ObjectID,
@@ -12,16 +11,18 @@ import {
 	WriteError,
 } from 'mongodb';
 
+const UNSPECIFIED_ERROR = 'Unspecified error';
+
 export interface IGetAllCriteria {
 	skip: number;
 	limit: number;
 }
 
 export interface IRepository<TEntity extends IModelBase> {
-	getById(id: string): Observable<TEntity>;
-	get(criteria?: IGetAllCriteria): Observable<Array<TEntity>>;
-	add(entity: TEntity): Observable<TEntity>;
-	update(entity: TEntity): Observable<TEntity>;
+	getById(id: string): Promise<TEntity>;
+	get(criteria?: IGetAllCriteria): Promise<Array<TEntity>>;
+	add(entity: TEntity): Promise<TEntity>;
+	update(entity: TEntity): Promise<TEntity>;
 }
 
 export abstract class RepositoryBase<TEntity extends IModelBase> implements IRepository<TEntity> {
@@ -31,68 +32,68 @@ export abstract class RepositoryBase<TEntity extends IModelBase> implements IRep
 		private validator: IValidator<TEntity>) {
 	}
 
-	public abstract get(criteria?: IGetAllCriteria): Observable<Array<TEntity>>;
+	public abstract get(criteria?: IGetAllCriteria): Promise<Array<TEntity>>;
 
-	public add(entity: TEntity): Observable<TEntity> {
-		if (this.validator.validate(entity)) {
-			return this.dbExecute<TEntity>((collection: Collection, subject: Subject<TEntity>) => {
+	public add(entity: TEntity): Promise<TEntity> {
+		return new Promise<TEntity>(async (resolve, reject) => {
+			if (this.validator.validate(entity)) {
 				entity.lastUpdated = entity.createdDate = new Date();
-				collection.insertOne(entity, (err: WriteError, result: InsertOneWriteOpResult) => {
-					if (err) {
-						throw new Error(err.errmsg);
-					}
-
+				try {
+					const db = await this.db;
+					const result = await this.collection(db).insertOne(entity);
 					entity._id = result.insertedId.toHexString();
-					subject.next(entity);
-					subject.complete();
-				});
-			});
-		}
-
-		throw new Error('Validation failed');
-	}
-
-	public getById(id: string): Observable<TEntity> {
-		return this.dbExecute<TEntity>((collection: Collection, subject: Subject<TEntity>) => {
-			collection.find({ _id: new ObjectID(id) }).limit(1).next((err: MongoError, user: TEntity): void => {
-				if (err) {
-					throw new Error(err.message);
+					resolve(entity);
+				} catch (err) {
+					reject(new Error(err.errmsg || err.message || UNSPECIFIED_ERROR));
 				}
-
-				subject.next(user);
-				subject.complete();
-			});
+			} else {
+				reject(new Error('Validation failed'));
+			}
 		});
 	}
 
-	public update(entity: TEntity): Observable<TEntity> {
-		if (this.validator.validate(entity)) {
-			return this.dbExecute<TEntity>((collection: Collection, subject: Subject<TEntity>) => {
+	public getById(id: string): Promise<TEntity> {
+		return new Promise<TEntity>(async (resolve, reject) => {
+			try {
+				const db = await this.db;
+				const entities = await this.collection(db).find<TEntity>({ _id: new ObjectID(id) })
+					.limit(1)
+					.toArray();
+				if (entities && entities.length > 0) {
+					return resolve(entities[0]);
+				}
+				reject(new Error('Not found'));
+			} catch (err) {
+				reject(new Error(err.errmsg || err.message || UNSPECIFIED_ERROR));
+			}
+		});
+	}
+
+	public update(entity: TEntity): Promise<TEntity> {
+		return new Promise<TEntity>(async (resolve, reject) => {
+			if (this.validator.validate(entity)) {
 				const id: ObjectID = new ObjectID(entity._id);
 				delete entity._id;
 				entity.lastUpdated = new Date();
-				collection.replaceOne({ _id: id }, entity, (err: WriteError, result: UpdateWriteOpResult) => {
-					if (err) {
-						throw new Error(err.errmsg);
-					}
-
-					console.log(result.toString());
+				try {
+					const db = await this.db;
+					const result = await this.collection(db).replaceOne({ _id: id }, entity);
 					entity._id = id.toHexString();
-					subject.next(entity);
-					subject.complete();
-				});
-			});
-		}
-
-		throw new Error('Validation failed');
+					resolve(entity);
+				} catch (err) {
+					reject(new Error(err.errmsg || err.message || UNSPECIFIED_ERROR));
+				}
+			} else {
+				reject(new Error('Validation failed'));
+			}
+		});
 	}
 
-	protected dbExecute<TResult>(callback: (collection: Collection, subject: Subject<TResult>) => void): Subject<TResult> {
-		const subject: Subject<TResult> = new Subject<TResult>();
-		MongoClient.connect(this.config.dbUrl, (err: MongoError, db: Db): void => {
-			callback(db.collection(this.collectionName), subject);
-		});
+	protected get db(): Promise<Db> {
+		return MongoClient.connect(this.config.dbUrl);
+	}
 
-		return subject;
+	protected collection(db: Db): Collection {
+		return db.collection(this.collectionName);
 	}
 }
